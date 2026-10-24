@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: finsecure
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finsecure-pay-config
+  namespace: finsecure
+data:
+  FINSECURE_MAX_AMOUNT: "10000"
+  FINSECURE_ALLOWED_CURRENCIES: "USD,EUR,GBP,INR"
