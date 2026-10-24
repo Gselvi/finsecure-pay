@@ -1,0 +1,60 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: finsecure-pay
+  namespace: finsecure
+  labels:
+    release: kube-prometheus-stack   # must match the Helm release name so Prometheus discovers it
+spec:
+  selector:
+    matchLabels:
+      app: finsecure-pay
+  endpoints:
+    - port: http
+      path: /actuator/prometheus
+      interval: 15s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: finsecure-pay-alerts
+  namespace: finsecure
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: finsecure-pay
+      rules:
+        - alert: FinSecurePayInstanceDown
+          expr: up{namespace="finsecure", service="finsecure-pay"} == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "FinSecure Pay instance {{ $labels.pod }} is down"
+        - alert: FinSecurePayHighInvalidRate
+          # Demo trigger: send many invalid transactions to /validate (see docs/RUNBOOK.md)
+          expr: |
+            sum(rate(http_server_requests_seconds_count{namespace="finsecure", uri="/validate", status="400"}[1m]))
+              /
+            clamp_min(sum(rate(http_server_requests_seconds_count{namespace="finsecure", uri="/validate"}[1m])), 0.001)
+              > 0.5
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "More than 50% of /validate requests are being rejected"
+        - alert: FinSecurePayHighLatency
+          expr: |
+            histogram_quantile(0.95, sum by (le) (rate(http_server_requests_seconds_bucket{namespace="finsecure", uri="/validate"}[5m]))) > 0.5
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "p95 latency of /validate above 500ms"
+        - alert: FinSecurePayPodRestarting
+          expr: increase(kube_pod_container_status_restarts_total{namespace="finsecure"}[10m]) > 2
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod {{ $labels.pod }} restarted more than twice in 10 minutes"
