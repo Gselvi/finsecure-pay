@@ -1,6 +1,6 @@
 # FinSecure Pay – Runbook, Demo Script and Evidence Checklist
 
-Replace `YOUR_DOCKERHUB_USER`, e-mail addresses and the cloud names with your own. Never commit credentials.
+Replace e-mail addresses and the cloud names with your own. Never commit credentials.
 
 ## Task 1 – Build, test, GitHub
 ```
@@ -12,11 +12,11 @@ Evidence: GitHub URL, `target/surefire-reports`, console output.
 
 ## Task 2 – Container
 ```
-docker build -t YOUR_DOCKERHUB_USER/finsecure-pay:1.0.0 .
-docker run -d --name fsp -p 8080:8080 YOUR_DOCKERHUB_USER/finsecure-pay:1.0.0
+docker build -t selvig88/finsecure-pay:1.0.0 .
+docker run -d --name fsp -p 8080:8080 selvig88/finsecure-pay:1.0.0
 curl http://localhost:8080/health
-docker login -u YOUR_DOCKERHUB_USER          # token via prompt, not on command line
-docker push YOUR_DOCKERHUB_USER/finsecure-pay:1.0.0
+docker login -u selvig88          # token via prompt, not on command line
+docker push selvig88/finsecure-pay:1.0.0
 ```
 Evidence: `docker images`, `docker ps`, curl output, Docker Hub tag page.
 

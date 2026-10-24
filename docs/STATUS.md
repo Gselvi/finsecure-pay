@@ -4,7 +4,7 @@ Last updated: 2026-10-21
 
 ## Done (in repo, committed)
 - Task 1: App, endpoints, 16 JUnit 5 tests passing (`mvn verify`, JDK 25+).
-- Task 2: `Dockerfile` (multi-stage, non-root) and `.dockerignore` – written, not yet built.
+- Task 2: `Dockerfile` (multi-stage, non-root) and `.dockerignore` – built locally as `finsecure-pay:1.0.0`; `/health` returns UP, runs as uid 999. Pushed to Docker Hub as `selvig88/finsecure-pay:1.0.0` (digest sha256:d3c42a61...1085d53).
 - Task 3: `k8s/` manifests – written, not yet deployed.
 - Task 4/5: `Jenkinsfile` with Sonar, Dependency-Check (CVSS >= 7), Trivy gates, auto-rollback – written, not yet run.
 - Task 6: `monitoring/` Prometheus rules, Grafana dashboard, Alertmanager email values – written, not yet applied.
@@ -12,8 +12,8 @@ Last updated: 2026-10-21
 
 ## Still to do
 1. Move project outside OneDrive; create GitHub repo; `git remote add origin ...; git push -u origin main`.
-2. Replace placeholders: `YOUR_DOCKERHUB_USER` (Jenkinsfile, k8s/deployment-service.yaml), e-mail addresses (Jenkinsfile, monitoring/kube-prometheus-stack-values.yaml).
-3. Install Docker; build, run, tag and push the image (Task 2). Confirm `eclipse-temurin:25-jre` pulls.
+2. Replace e-mail placeholders (Jenkinsfile, monitoring/kube-prometheus-stack-values.yaml). Docker Hub user `selvig88` is already set.
+3. Take the Docker Hub screenshot (repo page showing the 1.0.0 tag) for Task 2 evidence.
 4. Create managed Kubernetes cluster; deploy; demonstrate pod recovery (Task 3).
 5. Set up Jenkins + credentials (`dockerhub-creds`, `kubeconfig`, `nvd-api-key`, Sonar server `sonarqube`, SMTP); run success, failed-test, rollout and rollback demos (Task 4).
 6. Demonstrate security gate block + remediation (Task 5).
@@ -23,5 +23,6 @@ Last updated: 2026-10-21
 
 ## Notes
 - `mvn clean` fails inside OneDrive (locked `target/`); fine after moving.
-- Local tools found: Git, JDK 21 and 26, Maven at `~\.maven\apache-maven-3.9.16`. Docker/kubectl/az/helm not installed.
+- Local tools found: Git, JDK 21 and 26, Maven at `~\.maven\apache-maven-3.9.16`, Docker Desktop, kubectl. az/helm not installed.
+- Cluster must be managed (EKS/AKS/GKE) on a free tier; coordinator confirmed. Local Docker Desktop Kubernetes is not used.
 - Set `JAVA_HOME` to a JDK 25+ (e.g. jdk-26) when building; pom targets Java 25.

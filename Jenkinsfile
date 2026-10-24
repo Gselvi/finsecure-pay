@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_USER = 'YOUR_DOCKERHUB_USER'   // not a secret; replace with your Docker Hub namespace
+        DOCKERHUB_USER = 'selvig88'   // not a secret; Docker Hub namespace
         IMAGE_NAME     = "${DOCKERHUB_USER}/finsecure-pay"
         K8S_NAMESPACE  = 'finsecure'
     }
