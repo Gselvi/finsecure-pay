@@ -1,0 +1,19 @@
+# Create: eksctl create cluster -f eks/cluster.yaml
+# Delete: kubectl -n finsecure delete svc finsecure-pay; eksctl delete cluster -f eks/cluster.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: finsecure-eks
+  region: us-east-1   # matches the console region; change if you use another
+  tags:
+    project: finsecure-capstone
+
+managedNodeGroups:
+  - name: ng-main
+    instanceType: t3.medium   # 4 GiB. If the free plan rejects it, use c7i-flex.large (also 4 GiB)
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 2
+    volumeSize: 20
+    privateNetworking: false

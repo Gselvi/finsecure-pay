@@ -20,27 +20,35 @@ docker push selvig88/finsecure-pay:1.0.0
 ```
 Evidence: `docker images`, `docker ps`, curl output, Docker Hub tag page.
 
-## Task 3 – Kubernetes (example: AKS)
+## Task 3 – Kubernetes on AWS (EKS)
+Prerequisites: AWS account (personal, MFA on, budget alert set), an IAM user with programmatic access and least privilege (never the root user), `aws`, `eksctl` and `kubectl` installed. Configure with `aws configure` (keys stay in `~/.aws`, never in the repo).
 ```
-az group create -n finsecure-rg -l southeastasia
-az aks create -g finsecure-rg -n finsecure-aks --node-count 2 --generate-ssh-keys
-az aks get-credentials -g finsecure-rg -n finsecure-aks
+aws sts get-caller-identity                          # confirms who you are
+eksctl create cluster -f eks/cluster.yaml            # 2 x t3.medium managed nodes
+aws eks update-kubeconfig --name finsecure-eks --region us-east-1 --profile finsecure
+kubectl get nodes
 
-# edit image in k8s/deployment-service.yaml (or let Jenkins set it)
 kubectl apply -f k8s/namespace-config.yaml -f k8s/deployment-service.yaml
 kubectl -n finsecure get pods,svc,cm
-kubectl -n finsecure get svc finsecure-pay          # wait for EXTERNAL-IP
-curl http://<EXTERNAL-IP>/health
+kubectl -n finsecure get svc finsecure-pay          # EXTERNAL-IP is an ELB hostname on AWS; wait until it appears
+curl http://<ELB-HOSTNAME>/health
 
 # recovery
 kubectl -n finsecure delete pod <one-pod>
 kubectl -n finsecure get pods -w                     # new pod appears, 2/2 Ready again
 ```
-Delete the cluster afterwards to avoid cost: `az group delete -n finsecure-rg`.
+The image is public on Docker Hub, so the cluster needs no pull secret. EKS charges for the control plane and nodes while it exists: create it only when ready to demo.
+
+**Clean up (avoids charges)**: delete the Service first so the load balancer is removed, then the cluster.
+```
+kubectl -n finsecure delete svc finsecure-pay
+eksctl delete cluster -f eks/cluster.yaml
+```
+Check the EC2, EKS and Load Balancer consoles afterwards for leftovers.
 
 ## Task 4 – Jenkins
 1. Jenkins (with plugins: Pipeline, Git, Credentials Binding, SonarQube Scanner, Email Extension, JUnit) on a host with JDK 25, Maven, Docker, kubectl, Trivy.
-2. Credentials (Manage Jenkins > Credentials): `dockerhub-creds` (username/password – use a Docker Hub access token), `kubeconfig` (secret file), `nvd-api-key` (secret text). SonarQube server named `sonarqube` under Manage Jenkins > System; SMTP under Extended E-mail Notification.
+2. Credentials (Manage Jenkins > Credentials): `dockerhub-creds` (username/password – use a Docker Hub access token), `kubeconfig` (secret file), `nvd-api-key` (secret text). The EKS kubeconfig calls `aws eks get-token`, so the Jenkins host also needs the AWS CLI and credentials for a least-privilege IAM user (store them as Jenkins credentials or an instance role, never in the repo). SonarQube server named `sonarqube` under Manage Jenkins > System; SMTP under Extended E-mail Notification.
 3. New Pipeline job → "Pipeline script from SCM" → GitHub repo → `Jenkinsfile`. Add a GitHub webhook (or rely on `pollSCM`).
 4. **Success run**: change a line, push, watch all stages go green; `kubectl -n finsecure rollout history deployment/finsecure-pay`.
 5. **Failed-test demo**: in `TransactionValidatorTest` add `assertEquals(1, 2);`, push → Test stage fails, later stages (Push/Deploy) are skipped. Revert afterwards.
@@ -56,6 +64,14 @@ Delete the cluster afterwards to avoid cost: `az group delete -n finsecure-rg`.
 
 Run locally: `export NVD_API_KEY=...; mvn -Psecurity verify` (first run downloads the NVD database; an API key makes it fast). Reports: `target/dependency-check-report.html`, `trivy-report.txt`.
 Secrets evidence: Jenkins credentials screen (masked), `kubectl get secret alertmanager-smtp` (values not shown), `git grep -i password` shows nothing, `.gitignore`.
+
+**Kubernetes Secret demo** (create from the command line, never from a committed file):
+```
+kubectl -n finsecure create secret generic finsecure-pay-secret --from-literal=api-key=<random-value>
+kubectl -n finsecure get secret finsecure-pay-secret            # shows type and size, not the value
+kubectl -n finsecure get secret finsecure-pay-secret -o jsonpath='{.data.api-key}' | base64 -d   # shows Secrets are only encoded, not encrypted
+```
+Then show the protection: RBAC read access limited to the app's service account (positive: allowed call works; negative: `kubectl auth can-i get secrets --as=system:serviceaccount:finsecure:default` is denied for others; audit: denial visible in the log) and, optionally on EKS, envelope encryption of Secrets with a KMS key (`secretsEncryption.keyARN` in the eksctl config; needs a KMS key you create first).
 
 ## Task 6 – Monitoring and alerting
 ```
@@ -73,7 +89,7 @@ for i in $(seq 1 600); do curl -s -o /dev/null -X POST http://<EXTERNAL-IP>/vali
 ```
 Or, for the critical alert: `kubectl -n finsecure scale deploy finsecure-pay --replicas=0` (then back to 2). Evidence: Prometheus Alerts page (Firing), Alertmanager UI, received e-mail, Jenkins failure e-mail.
 
-**Logs**: `kubectl -n finsecure logs deploy/finsecure-pay --tail=50`; `kubectl -n finsecure logs <pod> --previous`; `kubectl -n finsecure describe pod <pod>`; cloud logging (e.g. AKS Container Insights: `ContainerLogV2 | where Namespace == "finsecure" | where LogMessage has "INVALID"`).
+**Logs**: `kubectl -n finsecure logs deploy/finsecure-pay --tail=50`; `kubectl -n finsecure logs <pod> --previous`; `kubectl -n finsecure describe pod <pod>`; cloud logging (on EKS, enable CloudWatch Container Insights / the Amazon CloudWatch Observability add-on and query the `/aws/containerinsights/finsecure-eks/application` log group for `INVALID`). `kubectl logs` alone satisfies the brief's requirement to document how logs are accessed.
 
 ## Task 7 – Documentation and demo
 - Design doc: [DESIGN.md](DESIGN.md) (architecture diagram in Mermaid – render and export as PNG for the deck).

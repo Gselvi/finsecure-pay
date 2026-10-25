@@ -91,7 +91,7 @@ pipeline {
 
         stage('Container Build') {
             when { expression { params.ACTION == 'DEPLOY' } }
-            steps { sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .' }
+            steps { sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .' }
         }
 
         stage('Container Scan (Trivy)') {
@@ -114,7 +114,6 @@ pipeline {
                     sh '''
                         echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
                         docker push $IMAGE_NAME:$IMAGE_TAG
-                        docker push $IMAGE_NAME:latest
                         docker logout
                     '''
                 }

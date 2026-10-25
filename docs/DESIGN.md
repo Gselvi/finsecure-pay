@@ -16,7 +16,7 @@ flowchart LR
     J --> Pipeline
     PU --> DH[(Docker Hub)]
     D --> K8s
-    subgraph K8s [Managed Kubernetes - AKS/EKS/GKE]
+    subgraph K8s [Amazon EKS]
         LB[Service type LoadBalancer] --> Pod1[finsecure-pay pod 1]
         LB --> Pod2[finsecure-pay pod 2]
         CM[ConfigMap] -.env.-> Pod1
@@ -38,22 +38,22 @@ flowchart LR
 |---|---|---|
 | SCM | Git + GitHub | Standard, webhooks to Jenkins |
 | Build | Maven + Spring Boot | Required stack; actuator gives probes and Prometheus metrics with no extra code |
-| Tests | JUnit 5 (+MockMvc) | 16 tests: validator rules and HTTP behaviour |
+| Tests | JUnit 5 (+MockMvc) | 16 tests: validator rules and HTTP behaviour. Selenium is not used: the service is a REST API with no UI, so MockMvc covers the HTTP contract |
 | CI/CD | Jenkins declarative pipeline | Pipeline-as-code in `Jenkinsfile`; credentials store; email extension |
 | Container | Multi-stage Dockerfile, non-root, Temurin JRE | Small runtime image, reproducible build independent of the agent |
 | Registry | Docker Hub | Free, simple; tags `1.0.<build>-<gitsha>` are immutable and traceable |
-| Orchestration | Managed Kubernetes (AKS/EKS/GKE) | Self-healing, rolling updates, rollback |
+| Orchestration | Amazon EKS (managed Kubernetes, created with eksctl from `eks/cluster.yaml`) | Self-healing, rolling updates, rollback; managed control plane; cluster definition is code |
 | Static analysis | SonarQube/SonarCloud with quality gate | Code smells, bugs, security hotspots |
 | Dependency scan | OWASP Dependency-Check (`-Psecurity`, fails at CVSS ≥ 7) | Gate on known-vulnerable libraries |
 | Image scan | Trivy (`--exit-code 1` on HIGH/CRITICAL) | Gate on OS/JRE/library CVEs in the final image |
 | Monitoring | kube-prometheus-stack (Prometheus, Alertmanager, Grafana) | Standard K8s monitoring; ServiceMonitor discovers the app |
-| Logging | Structured stdout → `kubectl logs` / cloud-native logging (Azure Monitor, CloudWatch, Cloud Logging) | Cloud-native logging avoids running an ELK stack for a small service |
+| Logging | Structured stdout → `kubectl logs` / Amazon CloudWatch Container Insights | Cloud-native logging avoids running an ELK stack for a small service |
 
 ## 4. Key design decisions
 - **Stateless service, 2 replicas, `maxUnavailable: 0`** – zero-downtime rolling updates; any pod can be killed and Kubernetes recreates it.
 - **Separate liveness/readiness probes** (`/actuator/health/liveness|readiness`) – traffic is only routed to ready pods; hung JVMs are restarted.
 - **Configuration via ConfigMap** (`FINSECURE_MAX_AMOUNT`, `FINSECURE_ALLOWED_CURRENCIES`) – change business limits without rebuilding the image.
-- **Immutable image tags**; `latest` is only a convenience. Deploys use `kubectl set image` so each release is a recorded Deployment revision (`revisionHistoryLimit: 5`) that `rollout undo` can revert to.
+- **Immutable image tags** (no `latest` tag is pushed), so the tag that is scanned is the tag that is deployed. Deploys use `kubectl set image` so each release is a recorded Deployment revision (`revisionHistoryLimit: 5`) that `rollout undo` can revert to.
 - **Failed rollout auto-rolls back** in the pipeline and a manual `ACTION=ROLLBACK` build is provided.
 
 ## 5. Security considerations
@@ -84,7 +84,9 @@ flowchart LR
 
 **Benefits.** Fewer false alerts, earlier detection of gradual degradation, shorter MTTR through automatic correlation with deployments, consistent first-line triage.
 
-**Limitations / risks / governance.** False positives/negatives and model drift; LLM hallucination – output is advisory with links to underlying data; no card or personal data may be sent to external models (mask account IDs, use a private/approved model endpoint); human approval required for any remediation; audit-log every AI suggestion; evaluate against historical incidents before enabling.
+**Type.** Primarily *detection* (is the current behaviour abnormal compared with a learned baseline); prediction of trends would need longer history and a stated horizon.
+
+**Limitations / risks / governance.** The model proposes, a named on-call engineer decides, and accountability does not transfer to the tool. It may run unattended only to detect, summarise and notify; changing the system (for example `rollout undo`) requires human review and approval; it may never deploy, delete, change security settings or access card or personal data. If the AI is wrong, the engineer ignores or overrides the suggestion, the alert still fires from the static thresholds, and the miss is recorded to improve the baseline. False positives/negatives and model drift; LLM hallucination – output is advisory with links to underlying data; no card or personal data may be sent to external models (mask account IDs, use a private/approved model endpoint); human approval required for any remediation; audit-log every AI suggestion; evaluate against historical incidents before enabling.
 
 **Integration.** Sits beside the existing stack: reads from Prometheus and the log store, triggered by an Alertmanager `webhook_configs` receiver, and optionally called from the Jenkins post-deploy stage to compare pre/post-release metrics and recommend rollback.
 
