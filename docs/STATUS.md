@@ -24,5 +24,5 @@ Last updated: 2026-10-21
 ## Notes
 - `mvn clean` fails inside OneDrive (locked `target/`); fine after moving.
 - Local tools found: Git, JDK 21 and 26, Maven at `~\.maven\apache-maven-3.9.16`, Docker Desktop, kubectl, AWS CLI, eksctl, Helm (installed 25 Oct via winget; restart the shell to use them). AWS profile `finsecure` works.
-- Cluster: AWS EKS (free-tier/credits account), defined in `eks/cluster.yaml` (eksctl, 2 x t3.medium, region us-east-1 - change if needed). Coordinator confirmed a managed cluster on a free tier. EKS bills while it runs: create late, delete right after the demo. Local Docker Desktop Kubernetes is not used.
+- Cluster: AWS EKS (free-tier/credits account), defined in `eks/cluster.yaml` (eksctl, 2 x c7i-flex.large because t3.medium is rejected by the free plan, region us-east-1 - change if needed). Needs a network without HTTPS inspection (the company Cisco proxy breaks kubectl/eksctl). Coordinator confirmed a managed cluster on a free tier. EKS bills while it runs: create late, delete right after the demo. Local Docker Desktop Kubernetes is not used.
 - Set `JAVA_HOME` to a JDK 25+ (e.g. jdk-26) when building; pom targets Java 25.

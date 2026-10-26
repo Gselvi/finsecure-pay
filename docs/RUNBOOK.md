@@ -24,7 +24,7 @@ Evidence: `docker images`, `docker ps`, curl output, Docker Hub tag page.
 Prerequisites: AWS account (personal, MFA on, budget alert set), an IAM user with programmatic access and least privilege (never the root user), `aws`, `eksctl` and `kubectl` installed. Configure with `aws configure` (keys stay in `~/.aws`, never in the repo).
 ```
 aws sts get-caller-identity                          # confirms who you are
-eksctl create cluster -f eks/cluster.yaml            # 2 x t3.medium managed nodes
+eksctl create cluster -f eks/cluster.yaml            # 2 x c7i-flex.large managed nodes (free-plan eligible)
 aws eks update-kubeconfig --name finsecure-eks --region us-east-1 --profile finsecure
 kubectl get nodes
 

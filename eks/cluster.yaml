@@ -9,9 +9,14 @@ metadata:
   tags:
     project: finsecure-capstone
 
+addons:   # install vpc-cni and kube-proxy before the node group, coredns after it
+  - name: vpc-cni
+  - name: kube-proxy
+  - name: coredns
+
 managedNodeGroups:
-  - name: ng-main
-    instanceType: t3.medium   # 4 GiB. If the free plan rejects it, use c7i-flex.large (also 4 GiB)
+  - name: ng-flex
+    instanceType: c7i-flex.large   # 4 GiB; free-plan eligible (t3.medium is not)
     desiredCapacity: 2
     minSize: 2
     maxSize: 2

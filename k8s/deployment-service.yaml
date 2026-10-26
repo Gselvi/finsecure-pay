@@ -23,6 +23,8 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
+        runAsUser: 999    # numeric UID of the image's "app" user, so Kubernetes can verify non-root
+        runAsGroup: 999
         seccompProfile:
           type: RuntimeDefault
       containers:
