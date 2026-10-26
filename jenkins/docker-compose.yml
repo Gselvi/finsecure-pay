@@ -1,0 +1,51 @@
+services:
+  sonarqube:
+    image: sonarqube:community
+    environment:
+      # Docker Desktop's VM has a low vm.max_map_count; this lets the embedded search start without it
+      SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dnode.store.allow_mmap=false"
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonar_data:/opt/sonarqube/data
+      - sonar_extensions:/opt/sonarqube/extensions
+
+  jenkins:
+    build: .
+    user: root   # needs the host Docker socket; lab setup only
+    ports:
+      - "8081:8080"
+    environment:
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc.yaml
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    secrets:
+      - jenkins_admin_password
+      - dockerhub_token
+      - jenkins_kubeconfig
+      - sonar_token
+      - notify_email
+      - smtp_password
+    depends_on:
+      - sonarqube
+
+# Secret files live outside the repository in C:\CapstoneProject\secrets
+secrets:
+  jenkins_admin_password:
+    file: ../../secrets/jenkins_admin_password
+  dockerhub_token:
+    file: ../../secrets/dockerhub_token
+  jenkins_kubeconfig:
+    file: ../../secrets/jenkins-kubeconfig.yaml
+  sonar_token:
+    file: ../../secrets/sonar_token
+  notify_email:
+    file: ../../secrets/notify_email
+  smtp_password:
+    file: ../../secrets/smtp_password
+
+volumes:
+  jenkins_home:
+  sonar_data:
+  sonar_extensions:

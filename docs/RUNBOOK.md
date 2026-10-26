@@ -37,7 +37,7 @@ curl http://<ELB-HOSTNAME>/health
 kubectl -n finsecure delete pod <one-pod>
 kubectl -n finsecure get pods -w                     # new pod appears, 2/2 Ready again
 ```
-The image is public on Docker Hub, so the cluster needs no pull secret. EKS charges for the control plane and nodes while it exists: create it only when ready to demo.
+The image is public on Docker Hub, so the cluster needs no pull secret. EKS charges for the control plane and nodes while it exists: create it only when ready to demo. Let `eksctl create cluster` finish (do not interrupt it: it installs the vpc-cni, kube-proxy and coredns add-ons at the end, and nodes never become Ready without them) and stay on a network without HTTPS inspection, since `kubectl` needs a direct TLS connection to the API server.
 
 **Clean up (avoids charges)**: delete the Service first so the load balancer is removed, then the cluster.
 ```

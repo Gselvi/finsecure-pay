@@ -1,0 +1,12 @@
+workflow-aggregator
+git
+credentials
+credentials-binding
+plain-credentials
+junit
+timestamper
+email-ext
+sonar
+configuration-as-code
+job-dsl
+pipeline-stage-view

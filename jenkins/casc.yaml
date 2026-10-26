@@ -1,0 +1,92 @@
+jenkins:
+  systemMessage: "FinSecure Pay CI/CD (configuration as code; secrets are read from /run/secrets, never stored in Git)"
+  numExecutors: 2
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "${jenkins_admin_password}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: "NOTIFY_EMAIL"
+            value: "${notify_email}"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "dockerhub-creds"
+              description: "Docker Hub access token"
+              username: "selvig88"
+              password: "${dockerhub_token}"
+          - file:
+              scope: GLOBAL
+              id: "kubeconfig"
+              description: "Token kubeconfig for the namespace-scoped jenkins-deployer service account"
+              fileName: "kubeconfig"
+              secretBytes: "${readFileBase64:/run/secrets/jenkins_kubeconfig}"
+          - string:
+              scope: GLOBAL
+              id: "sonar-token"
+              description: "SonarQube analysis token"
+              secret: "${sonar_token}"
+          - usernamePassword:
+              scope: GLOBAL
+              id: "smtp-creds"
+              description: "SMTP account for build notifications"
+              username: "${notify_email}"
+              password: "${smtp_password}"
+
+unclassified:
+  location:
+    url: "http://localhost:8081/"
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+      - name: "sonarqube"
+        serverUrl: "http://sonarqube:9000"
+        credentialsId: "sonar-token"
+  extendedEmailPublisher:
+    smtpHost: "smtp.gmail.com"
+    smtpPort: "465"
+    useSsl: true
+    smtpUsername: "${notify_email}"
+    smtpPassword: "${smtp_password}"
+    defaultSubject: "$PROJECT_NAME - Build #$BUILD_NUMBER - $BUILD_STATUS"
+    adminAddress: "${notify_email}"
+    charset: "UTF-8"
+  mailer:
+    smtpHost: "smtp.gmail.com"
+    smtpPort: "465"
+    useSsl: true
+    charset: "UTF-8"
+
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+
+jobs:
+  - script: |
+      pipelineJob('finsecure-pay') {
+        description('Build, test, scan, containerise and deploy FinSecure Pay to EKS')
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { url('https://github.com/Gselvi/finsecure-pay.git') }
+                branch('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(false)
+          }
+        }
+        triggers { scm('H/2 * * * *') }
+      }

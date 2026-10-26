@@ -10,6 +10,8 @@ pipeline {
         DOCKERHUB_USER = 'selvig88'   // not a secret; Docker Hub namespace
         IMAGE_NAME     = "${DOCKERHUB_USER}/finsecure-pay"
         K8S_NAMESPACE  = 'finsecure'
+        JAVA_HOME      = '/opt/jdk25'
+        PATH           = "/opt/jdk25/bin:/opt/maven/bin:${env.PATH}"
     }
 
     options {
@@ -77,14 +79,15 @@ pipeline {
                         }
                     }
                 }
-                stage('OWASP Dependency-Check') {
+                stage('Dependency Scan (Trivy)') {
                     steps {
-                        withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-                            // Security gate: fails on any dependency with CVSS >= 7 (High/Critical)
-                            sh 'mvn -B -Psecurity org.owasp:dependency-check-maven:check'
-                        }
+                        // Security gate: fails on any HIGH/CRITICAL vulnerability in the Maven dependencies
+                        sh '''
+                            trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 \
+                                --format table --output trivy-deps-report.txt pom.xml
+                        '''
                     }
-                    post { always { archiveArtifacts artifacts: 'target/dependency-check-report.*', allowEmptyArchive: true } }
+                    post { always { sh 'cat trivy-deps-report.txt || true'; archiveArtifacts artifacts: 'trivy-deps-report.txt', allowEmptyArchive: true } }
                 }
             }
         }
@@ -103,7 +106,7 @@ pipeline {
                         --format table --output trivy-report.txt $IMAGE_NAME:$IMAGE_TAG
                 '''
             }
-            post { always { archiveArtifacts artifacts: 'trivy-report.txt', allowEmptyArchive: true } }
+            post { always { sh 'cat trivy-report.txt || true'; archiveArtifacts artifacts: 'trivy-report.txt', allowEmptyArchive: true } }
         }
 
         stage('Push') {
@@ -125,9 +128,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     sh '''
-                        kubectl apply -f k8s/namespace-config.yaml
-                        kubectl apply -f k8s/deployment-service.yaml
-                        kubectl -n $K8S_NAMESPACE set image deployment/finsecure-pay finsecure-pay=$IMAGE_NAME:$IMAGE_TAG
+                        sed "s|image: .*finsecure-pay:.*|image: $IMAGE_NAME:$IMAGE_TAG|" k8s/deployment-service.yaml | kubectl apply -f -
                         kubectl -n $K8S_NAMESPACE annotate deployment/finsecure-pay kubernetes.io/change-cause="Jenkins build $BUILD_NUMBER ($IMAGE_TAG)" --overwrite
                         if ! kubectl -n $K8S_NAMESPACE rollout status deployment/finsecure-pay --timeout=180s; then
                             echo "Rollout failed - rolling back"
@@ -143,12 +144,12 @@ pipeline {
 
     post {
         success {
-            emailext to: 'you@example.com',
+            emailext to: env.NOTIFY_EMAIL,
                      subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                      body: "Build succeeded (${params.ACTION}).\nImage tag: ${env.IMAGE_TAG ?: 'n/a'}\n${env.BUILD_URL}"
         }
         failure {
-            emailext to: 'you@example.com',
+            emailext to: env.NOTIFY_EMAIL,
                      subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                      body: "Build failed at ${env.STAGE_NAME}.\nConsole output: ${env.BUILD_URL}console",
                      attachLog: true
