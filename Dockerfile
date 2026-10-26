@@ -9,7 +9,9 @@ RUN --mount=type=cache,target=/root/.m2 mvn -B -q clean package -DskipTests
 
 # ---- Runtime stage ----
 FROM eclipse-temurin:25-jre
-RUN groupadd --system app && useradd --system --gid app --no-create-home app
+# pebble (a Go service manager bundled in the base image) is unused here and carries HIGH CVEs found by Trivy
+RUN rm -f /usr/bin/pebble \
+ && groupadd --system app && useradd --system --gid app --no-create-home app
 WORKDIR /app
 COPY --from=build /workspace/target/finsecure-pay-*.jar app.jar
 USER app
