@@ -54,18 +54,12 @@ unclassified:
         serverUrl: "http://sonarqube:9000"
         credentialsId: "sonar-token"
   extendedEmailPublisher:
-    smtpHost: "smtp.gmail.com"
-    smtpPort: "465"
-    useSsl: true
-    smtpUsername: "${notify_email}"
-    smtpPassword: "${smtp_password}"
+    mailAccount:
+      smtpHost: "smtp.gmail.com"
+      smtpPort: "465"
+      useSsl: true
+      credentialsId: "smtp-creds"
     defaultSubject: "$PROJECT_NAME - Build #$BUILD_NUMBER - $BUILD_STATUS"
-    adminAddress: "${notify_email}"
-    charset: "UTF-8"
-  mailer:
-    smtpHost: "smtp.gmail.com"
-    smtpPort: "465"
-    useSsl: true
     charset: "UTF-8"
 
 security:
