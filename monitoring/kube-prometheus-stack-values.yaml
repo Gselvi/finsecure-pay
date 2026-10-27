@@ -6,6 +6,16 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     ruleSelectorNilUsesHelmValues: false
 
+# EKS does not expose these control-plane components, so their default alerts would fire permanently
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+
 grafana:
   sidecar:
     dashboards:
@@ -24,15 +34,15 @@ alertmanager:
       smtp_auth_password_file: /etc/alertmanager/secrets/alertmanager-smtp/password
       smtp_require_tls: true
     route:
-      receiver: email
+      receiver: "null"          # everything else is dropped; only the app's own alerts are emailed
       group_by: [alertname]
-      group_wait: 10s
-      group_interval: 1m
-      repeat_interval: 1h
       routes:
-        - receiver: "null"
+        - receiver: email
           matchers:
-            - alertname = "Watchdog"
+            - alertname =~ "FinSecurePay.*"
+          group_wait: 10s
+          group_interval: 1m
+          repeat_interval: 1h
     receivers:
       - name: "null"
       - name: email
