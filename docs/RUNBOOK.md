@@ -47,9 +47,9 @@ eksctl delete cluster -f eks/cluster.yaml
 Check the EC2, EKS and Load Balancer consoles afterwards for leftovers.
 
 ## Task 4 – Jenkins
-1. Jenkins (with plugins: Pipeline, Git, Credentials Binding, SonarQube Scanner, Email Extension, JUnit) on a host with JDK 25, Maven, Docker, kubectl, Trivy.
-2. Credentials (Manage Jenkins > Credentials): `dockerhub-creds` (username/password – use a Docker Hub access token), `kubeconfig` (secret file), `nvd-api-key` (secret text). The EKS kubeconfig calls `aws eks get-token`, so the Jenkins host also needs the AWS CLI and credentials for a least-privilege IAM user (store them as Jenkins credentials or an instance role, never in the repo). SonarQube server named `sonarqube` under Manage Jenkins > System; SMTP under Extended E-mail Notification.
-3. New Pipeline job → "Pipeline script from SCM" → GitHub repo → `Jenkinsfile`. Add a GitHub webhook (or rely on `pollSCM`).
+1. Jenkins and SonarQube run in Docker on the workstation: `cd jenkins; docker compose up -d` (image with JDK 25, Maven, Docker CLI, kubectl and Trivy; configuration as code in `jenkins/casc.yaml`). Jenkins is at http://localhost:8081 and SonarQube at http://localhost:9000.
+2. Secrets: run `scripts/set-secrets.ps1` (hidden prompts; writes files to `C:\CapstoneProject\secrets`, outside the repo) and `scripts/make-jenkins-kubeconfig.ps1` (token kubeconfig for the namespace-scoped service account from `k8s/jenkins-rbac.yaml`). Configuration as code turns them into the credentials `dockerhub-creds`, `kubeconfig`, `sonar-token` and `smtp-creds`.
+3. The job `finsecure-pay` is created by configuration as code (Pipeline script from SCM, GitHub repo, `Jenkinsfile`, SCM polling).
 4. **Success run**: change a line, push, watch all stages go green; `kubectl -n finsecure rollout history deployment/finsecure-pay`.
 5. **Failed-test demo**: in `TransactionValidatorTest` add `assertEquals(1, 2);`, push → Test stage fails, later stages (Push/Deploy) are skipped. Revert afterwards.
 6. **Rollout**: second successful run shows a new image tag: `kubectl -n finsecure get deploy finsecure-pay -o jsonpath='{.spec.template.spec.containers[0].image}'`.
@@ -59,10 +59,10 @@ Check the EC2, EKS and Load Balancer consoles afterwards for leftovers.
 | Gate | Where | Controlled failure |
 |---|---|---|
 | SonarQube quality gate | Jenkins stage | e.g. add an obvious bug/hard-coded password; gate fails |
-| OWASP Dependency-Check, CVSS ≥ 7 | `mvn -Psecurity verify` | add `commons-collections:commons-collections:3.2.1` (CVE-2015-7501, critical) → build fails; remove/upgrade to `org.apache.commons:commons-collections4:4.5.0` → passes |
+| Trivy dependency scan, HIGH/CRITICAL | Jenkins stage (`trivy fs pom.xml`) | Natural finding on the first run (10 CVEs in Spring Boot 3.5.16 dependencies) blocked build 1; upgrading to Spring Boot 4.1.2 fixed it. To repeat the demo add `commons-collections:commons-collections:3.2.1` (CVE-2015-7501, critical) and remove it again |
 | Trivy image scan | Jenkins stage | use an old base image (e.g. `eclipse-temurin:17-jre-focal` w/ unpatched libs) → HIGH/CRITICAL → fail; revert to current base image |
 
-Run locally: `export NVD_API_KEY=...; mvn -Psecurity verify` (first run downloads the NVD database; an API key makes it fast). Reports: `target/dependency-check-report.html`, `trivy-report.txt`.
+Optional local check: `export NVD_API_KEY=...; mvn -Psecurity verify` (OWASP Dependency-Check; the first run downloads the NVD database). Pipeline reports are archived by Jenkins: `trivy-deps-report.txt`, `trivy-report.txt`.
 Secrets evidence: Jenkins credentials screen (masked), `kubectl get secret alertmanager-smtp` (values not shown), `git grep -i password` shows nothing, `.gitignore`.
 
 **Kubernetes Secret demo** (create from the command line, never from a committed file):

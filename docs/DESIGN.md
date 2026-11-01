@@ -1,7 +1,7 @@
 # FinSecure Pay – Design Document
 
 ## 1. Overview
-FinSecure Pay is a transaction-validation API (Spring Boot 3, Java 25) delivered through an automated, security-gated CI/CD pipeline onto managed Kubernetes, with metrics, alerting and centralised log access. The goal is fast, repeatable, low-touch releases with built-in recovery.
+FinSecure Pay is a transaction-validation API (Spring Boot 4.1, Java 25) delivered through an automated, security-gated CI/CD pipeline onto managed Kubernetes, with metrics, alerting and centralised log access. The goal is fast, repeatable, low-touch releases with built-in recovery.
 
 ## 2. Architecture
 
@@ -11,7 +11,7 @@ flowchart LR
     GH -->|webhook / SCM poll| J[Jenkins]
     subgraph Pipeline [Jenkins pipeline]
         direction LR
-        B[Build & Unit Tests] --> P[Package JAR] --> S1[SonarQube + Quality Gate] --> S2[OWASP Dependency-Check] --> CB[Docker build] --> S3[Trivy image scan] --> PU[Push]  --> D[kubectl deploy + rollout status]
+        B[Build & Unit Tests] --> P[Package JAR] --> S1[SonarQube + Quality Gate] --> S2[Trivy dependency scan] --> CB[Docker build] --> S3[Trivy image scan] --> PU[Push]  --> D[kubectl deploy + rollout status]
     end
     J --> Pipeline
     PU --> DH[(Docker Hub)]
@@ -44,7 +44,7 @@ flowchart LR
 | Registry | Docker Hub | Free, simple; tags `1.0.<build>-<gitsha>` are immutable and traceable |
 | Orchestration | Amazon EKS (managed Kubernetes, created with eksctl from `eks/cluster.yaml`) | Self-healing, rolling updates, rollback; managed control plane; cluster definition is code |
 | Static analysis | SonarQube/SonarCloud with quality gate | Code smells, bugs, security hotspots |
-| Dependency scan | OWASP Dependency-Check (`-Psecurity`, fails at CVSS ≥ 7) | Gate on known-vulnerable libraries |
+| Dependency scan | Trivy filesystem scan of `pom.xml` (fails on HIGH/CRITICAL) | Gate on known-vulnerable libraries without the NVD API key and multi-hour database download that OWASP Dependency-Check needs; the Dependency-Check Maven profile is kept for local use. The gate found 10 real HIGH/CRITICAL CVEs on the first run and was remediated by upgrading Spring Boot 3.5.16 to 4.1.2 |
 | Image scan | Trivy (`--exit-code 1` on HIGH/CRITICAL) | Gate on OS/JRE/library CVEs in the final image |
 | Monitoring | kube-prometheus-stack (Prometheus, Alertmanager, Grafana) | Standard K8s monitoring; ServiceMonitor discovers the app |
 | Logging | Structured stdout → `kubectl logs` / Amazon CloudWatch Container Insights | Cloud-native logging avoids running an ELK stack for a small service |
@@ -57,8 +57,8 @@ flowchart LR
 - **Failed rollout auto-rolls back** in the pipeline and a manual `ACTION=ROLLBACK` build is provided.
 
 ## 5. Security considerations
-- Gates: unit tests → Sonar quality gate → Dependency-Check (CVSS ≥ 7) → Trivy (HIGH/CRITICAL). Any failure stops the pipeline before push/deploy.
-- **No secrets in source**: Docker Hub credentials, kubeconfig, NVD API key and Sonar token live in the Jenkins credentials store; SMTP password is a Kubernetes Secret. `.gitignore` excludes `.env`, `*.pem`, `*.key`, `kubeconfig*`.
+- Gates: unit tests → Sonar quality gate → Trivy dependency scan (HIGH/CRITICAL) → Trivy image scan (HIGH/CRITICAL). Any failure stops the pipeline before push/deploy. Demonstrated: build 1 blocked by the dependency scan, build 4 blocked by the image scan (an unused `pebble` binary in the base image), both remediated.
+- **No secrets in source**: Docker Hub token, the Sonar token and the SMTP password are mounted into Jenkins as files from outside the repository and loaded by Configuration as Code into the Jenkins credentials store; the Kubernetes SMTP password is a Secret. Jenkins deploys with a namespace-scoped service account (`k8s/jenkins-rbac.yaml`) whose token kubeconfig cannot read Secrets or touch cluster-level objects (positive, negative and denied-call checks recorded in the evidence), so Jenkins holds no AWS keys. `.gitignore` excludes `.env`, `*.pem`, `*.key`, `kubeconfig*`.
 - Container runs as non-root, drops all capabilities, no privilege escalation, `RuntimeDefault` seccomp, resource limits.
 - Input validation on all `/validate` fields; only `health`, `info`, `prometheus` actuator endpoints are exposed.
 - Future: TLS via Ingress + cert-manager, NetworkPolicies, image signing (cosign), Vault/External Secrets.
