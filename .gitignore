@@ -7,3 +7,9 @@ target/
 *.pem
 *.key
 kubeconfig*
+
+# local scratch files
+test_smtp*.py
+src/main/test_smtp.py
+valid.json
+invalid.json
