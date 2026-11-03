@@ -1,0 +1,24 @@
+$ docker images selvig88/finsecure-pay
+IMAGE                          ID             DISK USAGE   CONTENT SIZE   EXTRA
+selvig88/finsecure-pay:1.0.0   d3c42a615aed        525MB          141MB        
+
+$ docker run -d --name fsp -p 8080:8080 selvig88/finsecure-pay:1.0.0
+58ee993d4b2afbeff3123b98e3be80303b5fa5bca766d66204c7801d7fd1ccbc
+
+$ docker ps --filter name=fsp
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+58ee993d4b2a   selvig88/finsecure-pay:1.0.0   "sh -c 'exec java $JΓÇª"   5 seconds ago   Up 4 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   fsp
+
+$ curl -i http://localhost:8080/health
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 25 Oct 2026 03:27:55 GMT
+
+{"status":"UP","service":"finsecure-pay"}
+
+$ docker exec fsp id   (runs as non-root)
+uid=999(app) gid=999(app) groups=999(app)
+
+$ docker image inspect selvig88/finsecure-pay:1.0.0 (digest)
+finsecure-pay@sha256:d3c42a615aede85d9e42a7191753d86ce74ca7b279887329bf2b091ce1085d53

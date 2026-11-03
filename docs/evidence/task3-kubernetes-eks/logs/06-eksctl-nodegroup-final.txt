@@ -1,0 +1,28 @@
+2026-10-26 14:00:22 [Γä╣]  will use version 1.34 for new nodegroup(s) based on control plane version
+2026-10-26 14:00:28 [Γä╣]  nodegroup "ng-flex" will use "" [AmazonLinux2023/1.34]
+2026-10-26 14:00:29 [Γä╣]  1 nodegroup (ng-flex) was included (based on the include/exclude rules)
+2026-10-26 14:00:29 [Γä╣]  will create a CloudFormation stack for each of 1 managed nodegroups in cluster "finsecure-eks"
+2026-10-26 14:00:30 [Γä╣]  
+2 sequential tasks: { fix cluster compatibility, 1 task: { 1 task: { create managed nodegroup "ng-flex" } } 
+}
+2026-10-26 14:00:30 [Γä╣]  checking cluster stack for missing resources
+2026-10-26 14:00:31 [Γä╣]  cluster stack has all required resources
+2026-10-26 14:00:32 [Γä╣]  building managed nodegroup stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:00:33 [Γä╣]  deploying stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:00:33 [Γä╣]  waiting for CloudFormation stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:01:04 [Γä╣]  waiting for CloudFormation stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:01:38 [Γä╣]  waiting for CloudFormation stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:02:14 [Γä╣]  waiting for CloudFormation stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:02:47 [Γä╣]  waiting for CloudFormation stack "eksctl-finsecure-eks-nodegroup-ng-flex"
+2026-10-26 14:02:47 [Γä╣]  no tasks
+2026-10-26 14:02:47 [Γ£ö]  created 0 nodegroup(s) in cluster "finsecure-eks"
+2026-10-26 14:02:48 [Γä╣]  nodegroup "ng-flex" has 2 node(s)
+2026-10-26 14:02:48 [Γä╣]  node "ip-192-168-15-185.ec2.internal" is ready
+2026-10-26 14:02:48 [Γä╣]  node "ip-192-168-43-82.ec2.internal" is ready
+2026-10-26 14:02:48 [Γä╣]  waiting for at least 2 node(s) to become ready in "ng-flex"
+2026-10-26 14:02:49 [Γä╣]  nodegroup "ng-flex" has 2 node(s)
+2026-10-26 14:02:49 [Γä╣]  node "ip-192-168-15-185.ec2.internal" is ready
+2026-10-26 14:02:49 [Γä╣]  node "ip-192-168-43-82.ec2.internal" is ready
+2026-10-26 14:02:49 [Γ£ö]  created 1 managed nodegroup(s) in cluster "finsecure-eks"
+2026-10-26 14:02:50 [Γä╣]  checking security group configuration for all nodegroups
+2026-10-26 14:02:50 [Γä╣]  all nodegroups have up-to-date cloudformation templates

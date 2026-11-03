@@ -1,0 +1,76 @@
+
+Report Summary
+
+┌─────────┬──────┬─────────────────┐
+│ Target  │ Type │ Vulnerabilities │
+├─────────┼──────┼─────────────────┤
+│ pom.xml │ pom  │       10        │
+└─────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+For OSS Maintainers: VEX Notice
+--------------------------------
+If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+Learn more and start using VEX: https://trivy.dev/docs/v0.76/guide/supply-chain/vex/repo#publishing-vex-documents
+
+To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+
+
+pom.xml (pom)
+=============
+Total: 10 (HIGH: 5, CRITICAL: 5)
+
+┌─────────────────────────────────────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────────────────┬──────────────────────────────────────────────────────────────┐
+│                   Library                   │ Vulnerability  │ Severity │ Status │ Installed Version │       Fixed Version       │                            Title                             │
+├─────────────────────────────────────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ com.fasterxml.jackson.core:jackson-core     │ CVE-2026-89407 │ HIGH     │ fixed  │ 2.21.4            │ 2.18.11, 2.21.7, 2.22.3   │ com.fasterxml.jackson/jackson-core:                          │
+│                                             │                │          │        │                   │                           │ tools.jackson.core/jackson-core: Jackson-core: Denial of     │
+│                                             │                │          │        │                   │                           │ Service via regular expression backtracking                  │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-89407                   │
+│                                             ├────────────────┤          │        │                   ├───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-89425 │          │        │                   │ 2.21.7, 2.22.3, 2.18.11   │ com.fasterxml.jackson.core/jackson-core: Jackson-core:       │
+│                                             │                │          │        │                   │                           │ Denial of Service via unbounded StringBuilder growth during  │
+│                                             │                │          │        │                   │                           │ malformed token...                                           │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-89425                   │
+├─────────────────────────────────────────────┼────────────────┤          │        │                   ├───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ com.fasterxml.jackson.core:jackson-databind │ CVE-2026-68497 │          │        │                   │ 2.18.10, 2.21.6, 2.22.2   │ com.fasterxml.jackson.core/jackson-databind:                 │
+│                                             │                │          │        │                   │                           │ tools.jackson.core/jackson-databind: jackson-databind: CPU   │
+│                                             │                │          │        │                   │                           │ Denial of Service via unbounded numeric parsing              │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-68497                   │
+│                                             ├────────────────┤          │        │                   ├───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-91776 │          │        │                   │ 2.18.11, 2.21.7, 2.22.3   │ jackson-databind: com.fasterxml.jackson/jackson-core:        │
+│                                             │                │          │        │                   │                           │ jackson-databind: Denial of Service via unbounded cache      │
+│                                             │                │          │        │                   │                           │ growth in TypeDeserializerBase...                            │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-91776                   │
+│                                             ├────────────────┤          │        │                   ├───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-91777 │          │        │                   │ 2.21.7, 2.18.11, 2.22.3   │ com.fasterxml.jackson.core/jackson-databind:                 │
+│                                             │                │          │        │                   │                           │ tools.jackson.core:jackson-databind: Jackson-databind:       │
+│                                             │                │          │        │                   │                           │ Denial of Service via quadratic forward-reference completion │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-91777                   │
+├─────────────────────────────────────────────┼────────────────┼──────────┤        ├───────────────────┼───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ org.apache.tomcat.embed:tomcat-embed-core   │ CVE-2026-65182 │ CRITICAL │        │ 10.1.55           │ 11.0.25, 10.1.58, 9.0.121 │ tomcat: Apache Tomcat: Security constraint bypass due to     │
+│                                             │                │          │        │                   │                           │ improper access control                                      │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-65182                   │
+│                                             ├────────────────┤          │        │                   │                           ├──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-65905 │          │        │                   │                           │ tomcat: Apache Tomcat: Authentication bypass via limited     │
+│                                             │                │          │        │                   │                           │ replay attack in DIGEST authenticator...                     │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-65905                   │
+│                                             ├────────────────┤          │        │                   │                           ├──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-68525 │          │        │                   │                           │ tomcat: Apache Tomcat: Unauthorized resource access via FORM │
+│                                             │                │          │        │                   │                           │ authentication bypass                                        │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-68525                   │
+├─────────────────────────────────────────────┼────────────────┤          │        ├───────────────────┼───────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ org.springframework:spring-webmvc           │ CVE-2026-47884 │          │        │ 6.2.19            │ 7.0.9                     │ org.springframework/spring-webmvc: Spring Framework: Remote  │
+│                                             │                │          │        │                   │                           │ Code Execution via improper path limitation in XsltView...   │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-47884                   │
+│                                             ├────────────────┤          │        │                   │                           ├──────────────────────────────────────────────────────────────┤
+│                                             │ CVE-2026-47890 │          │        │                   │                           │ org.springframework/spring-webmvc:                           │
+│                                             │                │          │        │                   │                           │ org.springframework/spring-webflux: Spring Framework: Stream │
+│                                             │                │          │        │                   │                           │ corruption in Server-Sent Events (SSE) with view...          │
+│                                             │                │          │        │                   │                           │ https://avd.aquasec.com/nvd/cve-2026-47890                   │
+└─────────────────────────────────────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────────────────┴──────────────────────────────────────────────────────────────┘
+

@@ -1,0 +1,14 @@
+# Alert fired after sending 269 invalid transactions through the load balancer (Nov 1)
+
+$ Alertmanager active alerts
+Watchdog state=active severity=none startsAt=10/27/2026 1:42:18 AM summary=An alert that should always be firing to certify that Alertmanager is working properly.
+
+$ Alertmanager email notification counters
+alertmanager_notifications_failed_total{integration="email",reason="authError"} 0
+alertmanager_notifications_failed_total{integration="email",reason="clientError"} 0
+alertmanager_notifications_failed_total{integration="email",reason="contextCanceled"} 0
+alertmanager_notifications_failed_total{integration="email",reason="contextDeadlineExceeded"} 0
+alertmanager_notifications_failed_total{integration="email",reason="other"} 0
+alertmanager_notifications_failed_total{integration="email",reason="rateLimited"} 0
+alertmanager_notifications_failed_total{integration="email",reason="serverError"} 0
+alertmanager_notifications_total{integration="email"} 8

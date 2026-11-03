@@ -1,0 +1,675 @@
+Started by an SCM change
+Checking out git https://github.com/Gselvi/finsecure-pay.git into /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090 to read Jenkinsfile
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 6db52f0a20985da6c64fe50f978258619480b4af (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6db52f0a20985da6c64fe50f978258619480b4af # timeout=10
+Commit message: "Remediate: remove commons-collections 3.2.1 (CVE-2015-7501)"
+ > git rev-list --no-walk 846c53cfe5863499a15838394692e1520dbb9da3 # timeout=10
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/jobs/finsecure-pay/workspace
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 6db52f0a20985da6c64fe50f978258619480b4af (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6db52f0a20985da6c64fe50f978258619480b4af # timeout=10
+Commit message: "Remediate: remove commons-collections 3.2.1 (CVE-2015-7501)"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Rollback)
+Stage "Rollback" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+22:40:07  The recommended git tool is: NONE
+22:40:07  No credentials specified
+22:40:07   > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+22:40:07  Fetching changes from the remote Git repository
+22:40:07   > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+22:40:07  Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+22:40:07   > git --version # timeout=10
+22:40:07   > git --version # 'git version 2.47.3'
+22:40:07   > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+22:40:07   > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+22:40:07  Checking out Revision 6db52f0a20985da6c64fe50f978258619480b4af (refs/remotes/origin/main)
+22:40:07   > git config core.sparsecheckout # timeout=10
+22:40:07   > git checkout -f 6db52f0a20985da6c64fe50f978258619480b4af # timeout=10
+22:40:07  Commit message: "Remediate: remove commons-collections 3.2.1 (CVE-2015-7501)"
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+22:40:08  + git rev-parse --short HEAD
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
+22:40:08  + mvn -B -q clean compile
+22:40:08  WARNING: A restricted method in java.lang.System has been called
+22:40:08  WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/opt/maven/lib/jansi-2.4.1.jar)
+22:40:08  WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+22:40:08  WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+22:40:08  
+22:40:08  WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+22:40:08  WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/opt/maven/lib/guava-33.2.1-jre.jar)
+22:40:08  WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+22:40:08  WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
+22:40:13  + mvn -B test
+22:40:13  WARNING: A restricted method in java.lang.System has been called
+22:40:13  WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/opt/maven/lib/jansi-2.4.1.jar)
+22:40:13  WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+22:40:13  WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+22:40:13  
+22:40:13  WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+22:40:13  WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/opt/maven/lib/guava-33.2.1-jre.jar)
+22:40:13  WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+22:40:13  WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+22:40:15  [INFO] Scanning for projects...
+22:40:15  [INFO] 
+22:40:15  [INFO] --------------------< com.finsecure:finsecure-pay >---------------------
+22:40:15  [INFO] Building finsecure-pay 1.0.0
+22:40:15  [INFO]   from pom.xml
+22:40:15  [INFO] --------------------------------[ jar ]---------------------------------
+22:40:15  [INFO] 
+22:40:15  [INFO] --- resources:3.5.0:resources (default-resources) @ finsecure-pay ---
+22:40:15  [INFO] Copying 1 resource from src/main/resources to target/classes
+22:40:15  [INFO] Copying 0 resource from src/main/resources to target/classes
+22:40:15  [INFO] 
+22:40:15  [INFO] --- compiler:3.15.0:compile (default-compile) @ finsecure-pay ---
+22:40:15  [INFO] Nothing to compile - all classes are up to date.
+22:40:15  [INFO] 
+22:40:15  [INFO] --- resources:3.5.0:testResources (default-testResources) @ finsecure-pay ---
+22:40:15  [INFO] skip non existing resourceDirectory /var/jenkins_home/jobs/finsecure-pay/workspace/src/test/resources
+22:40:15  [INFO] 
+22:40:15  [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ finsecure-pay ---
+22:40:15  [INFO] Recompiling the module because of changed source code.
+22:40:15  [INFO] Compiling 2 source files with javac [debug parameters release 25] to target/test-classes
+22:40:17  [INFO] 
+22:40:17  [INFO] --- surefire:3.5.6:test (default-test) @ finsecure-pay ---
+22:40:17  [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+22:40:17  [INFO] 
+22:40:17  [INFO] -------------------------------------------------------
+22:40:17  [INFO]  T E S T S
+22:40:17  [INFO] -------------------------------------------------------
+22:40:18  [INFO] Running com.finsecure.pay.controller.TransactionControllerTest
+22:40:18  14:40:18.675 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:40:19  14:40:18.896 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+22:40:19  14:40:18.899 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:40:19  14:40:18.918 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+22:40:19  
+22:40:19    .   ____          _            __ _ _
+22:40:19   /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+22:40:19  ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+22:40:19   \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+22:40:19    '  |____| .__|_| |_|_| |_\__, | / / / /
+22:40:19   =========|_|==============|___/=/_/_/_/
+22:40:19  
+22:40:19   :: Spring Boot ::                (v4.1.2)
+22:40:19  
+22:40:19  2026-11-01T14:40:19.505Z  INFO 16312 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Starting TransactionControllerTest using Java 25.0.5 with PID 16312 (started by root in /var/jenkins_home/jobs/finsecure-pay/workspace)
+22:40:19  2026-11-01T14:40:19.510Z  INFO 16312 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : No active profile set, falling back to 1 default profile: "default"
+22:40:20  2026-11-01T14:40:20.524Z  INFO 16312 --- [finsecure-pay] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+22:40:20  2026-11-01T14:40:20.525Z  INFO 16312 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+22:40:20  2026-11-01T14:40:20.527Z  INFO 16312 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+22:40:20  2026-11-01T14:40:20.562Z  INFO 16312 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Started TransactionControllerTest in 1.552 seconds (process running for 3.146)
+22:40:20  Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+22:40:20  OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+22:40:21  WARNING: A Java agent has been loaded dynamically (/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.15/byte-buddy-agent-1.18.15.jar)
+22:40:21  WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+22:40:21  WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+22:40:21  WARNING: Dynamic loading of agents will be disallowed by default in a future release
+22:40:21  2026-11-01T14:40:21.328Z  INFO 16312 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T1 status=VALID errors=[]
+22:40:21  2026-11-01T14:40:21.425Z  WARN 16312 --- [finsecure-pay] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('b' (code 98)): was expecting double-quote to start property name]
+22:40:21  2026-11-01T14:40:21.438Z  INFO 16312 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T2 status=INVALID errors=[amount must be greater than zero]
+22:40:21  [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.058 s -- in com.finsecure.pay.controller.TransactionControllerTest
+22:40:21  [INFO] Running com.finsecure.pay.service.TransactionValidatorTest
+22:40:21  [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in com.finsecure.pay.service.TransactionValidatorTest
+22:40:21  [INFO] 
+22:40:21  [INFO] Results:
+22:40:21  [INFO] 
+22:40:21  [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+22:40:21  [INFO] 
+22:40:21  [INFO] ------------------------------------------------------------------------
+22:40:21  [INFO] BUILD SUCCESS
+22:40:21  [INFO] ------------------------------------------------------------------------
+22:40:21  [INFO] Total time:  6.905 s
+22:40:21  [INFO] Finished at: 2026-11-01T14:40:21Z
+22:40:21  [INFO] ------------------------------------------------------------------------
+Post stage
+[Pipeline] junit
+22:40:21  Recording test results
+22:40:21  [Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Package)
+[Pipeline] sh
+22:40:22  + mvn -B -q package -DskipTests
+22:40:22  WARNING: A restricted method in java.lang.System has been called
+22:40:22  WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/opt/maven/lib/jansi-2.4.1.jar)
+22:40:22  WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+22:40:22  WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+22:40:22  
+22:40:22  WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+22:40:22  WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/opt/maven/lib/guava-33.2.1-jre.jar)
+22:40:22  WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+22:40:22  WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Post stage
+[Pipeline] archiveArtifacts
+22:40:26  Archiving artifacts
+22:40:26  Recording fingerprints
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Security Checks)
+[Pipeline] parallel
+[Pipeline] { (Branch: SonarQube Static Analysis)
+[Pipeline] { (Branch: Dependency Scan (Trivy))
+[Pipeline] stage
+[Pipeline] { (SonarQube Static Analysis)
+[Pipeline] stage
+[Pipeline] { (Dependency Scan (Trivy))
+[Pipeline] withSonarQubeEnv
+22:40:26  Injecting SonarQube environment variables using the configuration: sonarqube
+[Pipeline] sh
+[Pipeline] {
+[Pipeline] sh
+22:40:27  + trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format table --output trivy-deps-report.txt pom.xml
+22:40:27  2026-11-01T14:40:27Z	INFO	[vuln] Vulnerability scanning is enabled
+22:40:27  + mvn -B -q org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=finsecure-pay
+22:40:27  WARNING: A restricted method in java.lang.System has been called
+22:40:27  WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/opt/maven/lib/jansi-2.4.1.jar)
+22:40:27  WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+22:40:27  WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+22:40:27  
+22:40:27  2026-11-01T14:40:27Z	INFO	Number of language-specific files	num=1
+22:40:27  2026-11-01T14:40:27Z	INFO	[pom] Detecting vulnerabilities...
+Post stage
+[Pipeline] sh
+22:40:27  WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+22:40:27  WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/opt/maven/lib/guava-33.2.1-jre.jar)
+22:40:27  WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+22:40:27  WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+22:40:27  + cat trivy-deps-report.txt
+22:40:27  
+22:40:27  Report Summary
+22:40:27  
+22:40:27  ┌─────────┬──────┬─────────────────┐
+22:40:27  │ Target  │ Type │ Vulnerabilities │
+22:40:27  ├─────────┼──────┼─────────────────┤
+22:40:27  │ pom.xml │ pom  │        0        │
+22:40:27  └─────────┴──────┴─────────────────┘
+22:40:27  Legend:
+22:40:27  - '-': Not scanned
+22:40:27  - '0': Clean (no security findings detected)
+22:40:27  
+[Pipeline] archiveArtifacts
+22:40:27  Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] timeout
+22:40:45  Timeout set to expire in 5 min 0 sec
+[Pipeline] {
+[Pipeline] waitForQualityGate
+22:40:45  Checking status of SonarQube task 'a81da5d3-e0cf-448b-9f17-2f34ff24ae0e' on server 'sonarqube'
+22:40:45  SonarQube task 'a81da5d3-e0cf-448b-9f17-2f34ff24ae0e' status is 'SUCCESS'
+22:40:45  SonarQube task 'a81da5d3-e0cf-448b-9f17-2f34ff24ae0e' completed. Quality gate is 'OK'
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Container Build)
+[Pipeline] sh
+22:40:45  + docker build -t selvig88/finsecure-pay:1.0.16-6db52f0 .
+22:40:46  #0 building with "default" instance using docker driver
+22:40:46  
+22:40:46  #1 [internal] load build definition from Dockerfile
+22:40:46  #1 transferring dockerfile: 801B done
+22:40:46  #1 DONE 0.0s
+22:40:46  
+22:40:46  #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+22:40:48  #2 DONE 1.9s
+22:40:48  
+22:40:48  #3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+22:40:48  #3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+22:40:48  #3 CACHED
+22:40:48  
+22:40:48  #4 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25
+22:40:49  #4 DONE 1.4s
+22:40:49  
+22:40:49  #5 [internal] load metadata for docker.io/library/eclipse-temurin:25-jre
+22:40:49  #5 DONE 1.5s
+22:40:49  
+22:40:49  #6 [internal] load .dockerignore
+22:40:49  #6 transferring context: 116B done
+22:40:49  #6 DONE 0.0s
+22:40:49  
+22:40:49  #7 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976
+22:40:49  #7 resolve docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976 0.0s done
+22:40:49  #7 DONE 0.0s
+22:40:49  
+22:40:49  #8 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:25-jre@sha256:ecdc0adb37bde1a281c4d245a3cd535004b1fc8322d560f5b09463b248c81df0
+22:40:49  #8 resolve docker.io/library/eclipse-temurin:25-jre@sha256:ecdc0adb37bde1a281c4d245a3cd535004b1fc8322d560f5b09463b248c81df0 0.0s done
+22:40:49  #8 DONE 0.1s
+22:40:49  
+22:40:49  #9 [internal] load build context
+22:40:49  #9 transferring context: 4.83kB done
+22:40:49  #9 DONE 0.0s
+22:40:49  
+22:40:49  #10 [stage-1 2/4] RUN rm -f /usr/bin/pebble  && groupadd --system app && useradd --system --gid app --no-create-home app
+22:40:49  #10 CACHED
+22:40:49  
+22:40:49  #11 [build 4/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -q dependency:go-offline
+22:40:49  #11 CACHED
+22:40:49  
+22:40:49  #12 [build 2/6] WORKDIR /workspace
+22:40:49  #12 CACHED
+22:40:49  
+22:40:49  #13 [build 3/6] COPY pom.xml .
+22:40:49  #13 CACHED
+22:40:49  
+22:40:49  #14 [build 5/6] COPY src ./src
+22:40:49  #14 CACHED
+22:40:49  
+22:40:49  #15 [build 6/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -q clean package -DskipTests
+22:40:49  #15 CACHED
+22:40:49  
+22:40:49  #16 [stage-1 3/4] WORKDIR /app
+22:40:49  #16 CACHED
+22:40:49  
+22:40:49  #17 [stage-1 4/4] COPY --from=build /workspace/target/finsecure-pay-*.jar app.jar
+22:40:49  #17 CACHED
+22:40:49  
+22:40:49  #18 exporting to image
+22:40:49  #18 exporting layers done
+22:40:49  #18 exporting manifest sha256:a660bbddeb8ac375aa5c400058edb138cda3cf1c1021e2d8445958504dbf49fd done
+22:40:49  #18 exporting config sha256:8f422509098dd0c2d77245a32a64317684eaae284f458dabd0675860796725f4 done
+22:40:49  #18 exporting attestation manifest sha256:343fb186053817565e6f5c7d3d5758cd6ae12623e74556b7ad825572ff182b6a
+22:40:49  #18 exporting attestation manifest sha256:343fb186053817565e6f5c7d3d5758cd6ae12623e74556b7ad825572ff182b6a 0.0s done
+22:40:49  #18 exporting manifest list sha256:b096641251c40d9a9defa8635554718fdbdf7ebc9416f1f3d9fad7fcbdaf977d 0.0s done
+22:40:49  #18 naming to docker.io/selvig88/finsecure-pay:1.0.16-6db52f0 done
+22:40:49  #18 unpacking to docker.io/selvig88/finsecure-pay:1.0.16-6db52f0 0.0s done
+22:40:49  #18 DONE 0.1s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Container Scan (Trivy))
+[Pipeline] sh
+22:40:50  + trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --format table --output trivy-report.txt selvig88/finsecure-pay:1.0.16-6db52f0
+22:40:50  2026-11-01T14:40:50Z	INFO	[vuln] Vulnerability scanning is enabled
+22:40:50  2026-11-01T14:40:50Z	INFO	[secret] Secret scanning is enabled
+22:40:50  2026-11-01T14:40:50Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+22:40:50  2026-11-01T14:40:50Z	INFO	[secret] Please see https://trivy.dev/docs/v0.76/guide/scanner/secret#recommendation for faster secret detection
+22:40:55  2026-11-01T14:40:55Z	INFO	Detected OS	family="ubuntu" version="26.04"
+22:40:55  2026-11-01T14:40:55Z	INFO	[ubuntu] Detecting vulnerabilities...	os_version="26.04" pkg_num=106
+22:40:55  2026-11-01T14:40:55Z	INFO	Number of language-specific files	num=1
+22:40:55  2026-11-01T14:40:55Z	INFO	[jar] Detecting vulnerabilities...
+Post stage
+[Pipeline] sh
+22:40:56  + cat trivy-report.txt
+22:40:56  
+22:40:56  Report Summary
+22:40:56  
+22:40:56  ┌──────────────────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+22:40:56  │                        Target                        │  Type  │ Vulnerabilities │ Secrets │
+22:40:56  ├──────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+22:40:56  │ selvig88/finsecure-pay:1.0.16-6db52f0 (ubuntu 26.04) │ ubuntu │        0        │    -    │
+22:40:56  ├──────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+22:40:56  │ app/app.jar                                          │  jar   │        0        │    -    │
+22:40:56  └──────────────────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+22:40:56  Legend:
+22:40:56  - '-': Not scanned
+22:40:56  - '0': Clean (no security findings detected)
+22:40:56  
+[Pipeline] archiveArtifacts
+22:40:56  Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+[Pipeline] withCredentials
+22:40:56  Masking supported pattern matches of $DH_PASS
+[Pipeline] {
+[Pipeline] sh
+22:40:56  + echo ****
+22:40:56  + docker login -u selvig88 --password-stdin
+22:40:58  WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+22:40:58  Configure a credential helper to remove this warning. See
+22:40:58  https://docs.docker.com/engine/reference/commandline/login/#credential-stores
+22:40:58  
+22:40:58  Login Succeeded
+22:40:58  + docker push selvig88/finsecure-pay:1.0.16-6db52f0
+22:40:58  The push refers to repository [docker.io/selvig88/finsecure-pay]
+22:40:58  aae1dd39cca5: Waiting
+22:40:58  f4bac5723c40: Waiting
+22:40:58  48096336c477: Waiting
+22:40:58  9ce1bc7852a0: Waiting
+22:40:58  fc9a3680de99: Waiting
+22:40:58  edafa32f5d9e: Waiting
+22:40:58  280dbd83d621: Waiting
+22:40:58  4f4fb700ef54: Waiting
+22:40:58  10790e7af997: Waiting
+22:40:58  f3f25b84a7d7: Waiting
+22:40:58  10790e7af997: Waiting
+22:40:58  f3f25b84a7d7: Waiting
+22:40:58  aae1dd39cca5: Waiting
+22:40:58  f4bac5723c40: Waiting
+22:40:58  48096336c477: Waiting
+22:40:58  9ce1bc7852a0: Waiting
+22:40:58  fc9a3680de99: Waiting
+22:40:58  edafa32f5d9e: Waiting
+22:40:58  280dbd83d621: Waiting
+22:40:58  4f4fb700ef54: Waiting
+22:40:58  aae1dd39cca5: Waiting
+22:40:58  f4bac5723c40: Waiting
+22:40:58  48096336c477: Waiting
+22:40:58  9ce1bc7852a0: Waiting
+22:40:58  fc9a3680de99: Waiting
+22:40:58  edafa32f5d9e: Waiting
+22:40:58  280dbd83d621: Waiting
+22:40:58  4f4fb700ef54: Waiting
+22:40:58  10790e7af997: Waiting
+22:40:58  f3f25b84a7d7: Waiting
+22:40:58  f4bac5723c40: Waiting
+22:40:58  48096336c477: Waiting
+22:40:58  9ce1bc7852a0: Waiting
+22:40:58  fc9a3680de99: Waiting
+22:40:58  edafa32f5d9e: Waiting
+22:40:58  280dbd83d621: Waiting
+22:40:58  4f4fb700ef54: Waiting
+22:40:58  10790e7af997: Waiting
+22:40:58  f3f25b84a7d7: Waiting
+22:40:58  aae1dd39cca5: Waiting
+22:40:58  10790e7af997: Waiting
+22:40:58  f3f25b84a7d7: Waiting
+22:40:58  aae1dd39cca5: Waiting
+22:40:58  f4bac5723c40: Waiting
+22:40:58  48096336c477: Waiting
+22:40:58  9ce1bc7852a0: Waiting
+22:40:58  fc9a3680de99: Waiting
+22:40:58  edafa32f5d9e: Waiting
+22:40:58  280dbd83d621: Waiting
+22:40:58  4f4fb700ef54: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:40:59  f4bac5723c40: Waiting
+22:40:59  48096336c477: Waiting
+22:40:59  9ce1bc7852a0: Waiting
+22:40:59  fc9a3680de99: Waiting
+22:40:59  edafa32f5d9e: Waiting
+22:40:59  280dbd83d621: Waiting
+22:40:59  4f4fb700ef54: Waiting
+22:40:59  10790e7af997: Waiting
+22:40:59  f3f25b84a7d7: Waiting
+22:40:59  aae1dd39cca5: Waiting
+22:41:00  edafa32f5d9e: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Waiting
+22:41:00  10790e7af997: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  edafa32f5d9e: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Waiting
+22:41:00  10790e7af997: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  edafa32f5d9e: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Waiting
+22:41:00  10790e7af997: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  edafa32f5d9e: Layer already exists
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Waiting
+22:41:00  10790e7af997: Layer already exists
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  48096336c477: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  4f4fb700ef54: Layer already exists
+22:41:00  48096336c477: Layer already exists
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  f3f25b84a7d7: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  280dbd83d621: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:00  280dbd83d621: Layer already exists
+22:41:00  f3f25b84a7d7: Layer already exists
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  aae1dd39cca5: Waiting
+22:41:00  f4bac5723c40: Waiting
+22:41:00  9ce1bc7852a0: Waiting
+22:41:00  fc9a3680de99: Waiting
+22:41:01  aae1dd39cca5: Layer already exists
+22:41:01  f4bac5723c40: Waiting
+22:41:01  9ce1bc7852a0: Layer already exists
+22:41:01  fc9a3680de99: Layer already exists
+22:41:01  f4bac5723c40: Waiting
+22:41:01  f4bac5723c40: Waiting
+22:41:02  f4bac5723c40: Pushed
+22:41:05  1.0.16-6db52f0: digest: sha256:b096641251c40d9a9defa8635554718fdbdf7ebc9416f1f3d9fad7fcbdaf977d size: 856
+22:41:05  + docker logout
+22:41:05  Removing login credentials for https://index.docker.io/v1/
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] withCredentials
+22:41:05  Masking supported pattern matches of $KUBECONFIG
+[Pipeline] {
+[Pipeline] sh
+22:41:06  + + sed s|image: .*finsecure-pay:.*|image: selvig88/finsecure-pay:1.0.16-6db52f0| k8s/deployment-service.yaml
+22:41:06  kubectl apply -f -
+22:41:08  deployment.apps/finsecure-pay configured
+22:41:08  service/finsecure-pay unchanged
+22:41:08  + kubectl -n finsecure annotate deployment/finsecure-pay kubernetes.io/change-cause=Jenkins build 16 (1.0.16-6db52f0) --overwrite
+22:41:10  deployment.apps/finsecure-pay annotated
+22:41:10  + kubectl -n finsecure rollout status deployment/finsecure-pay --timeout=180s
+22:41:11  Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+22:41:26  Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+22:41:26  Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+22:41:26  Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+22:41:53  Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+22:41:53  deployment "finsecure-pay" successfully rolled out
+22:41:53  + kubectl -n finsecure get pods -o wide
+22:41:53  NAME                             READY   STATUS    RESTARTS   AGE   IP               NODE                             NOMINATED NODE   READINESS GATES
+22:41:53  finsecure-pay-7448d544f7-9jz2l   1/1     Running   0          24s   192.168.18.132   ip-192-168-19-222.ec2.internal   <none>           <none>
+22:41:53  finsecure-pay-7448d544f7-lbkr7   1/1     Running   0          42s   192.168.50.199   ip-192-168-45-213.ec2.internal   <none>           <none>
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+22:41:53  Sending email to: <notification-email>
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

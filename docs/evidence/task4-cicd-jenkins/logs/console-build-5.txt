@@ -1,0 +1,505 @@
+Started by user admin
+Checking out git https://github.com/Gselvi/finsecure-pay.git into /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090 to read Jenkinsfile
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb # timeout=10
+Commit message: "Remove unused pebble binary from the runtime image (Trivy HIGH CVEs); add buildx to Jenkins image"
+ > git rev-list --no-walk 40e8b7b06aa4bd7f7ba8e6c07fbb6271bc7eb40f # timeout=10
+Running on Jenkins in /var/jenkins_home/jobs/finsecure-pay/workspace
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb # timeout=10
+Commit message: "Remove unused pebble binary from the runtime image (Trivy HIGH CVEs); add buildx to Jenkins image"
+Stage "Rollback" skipped due to when conditional
+[2026-10-26T08:39:24.138Z] The recommended git tool is: NONE
+[2026-10-26T08:39:24.138Z] No credentials specified
+[2026-10-26T08:39:24.139Z]  > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+[2026-10-26T08:39:24.145Z] Fetching changes from the remote Git repository
+[2026-10-26T08:39:24.147Z]  > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+[2026-10-26T08:39:24.151Z] Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+[2026-10-26T08:39:24.151Z]  > git --version # timeout=10
+[2026-10-26T08:39:24.153Z]  > git --version # 'git version 2.47.3'
+[2026-10-26T08:39:24.154Z]  > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-26T08:39:24.807Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-10-26T08:39:24.810Z] Checking out Revision 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb (refs/remotes/origin/main)
+[2026-10-26T08:39:24.810Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-26T08:39:24.812Z]  > git checkout -f 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb # timeout=10
+[2026-10-26T08:39:24.815Z] Commit message: "Remove unused pebble binary from the runtime image (Trivy HIGH CVEs); add buildx to Jenkins image"
+[2026-10-26T08:39:25.165Z] + git rev-parse --short HEAD
+[2026-10-26T08:39:25.665Z] + mvn -B -q clean compile
+[2026-10-26T08:39:25.665Z] 
+[2026-10-26T08:39:28.805Z] + mvn -B test
+[2026-10-26T08:39:28.805Z] 
+[2026-10-26T08:39:29.607Z] [INFO] Scanning for projects...
+[2026-10-26T08:39:29.857Z] [INFO] 
+[2026-10-26T08:39:29.857Z] [INFO] --------------------< com.finsecure:finsecure-pay >---------------------
+[2026-10-26T08:39:29.857Z] [INFO] Building finsecure-pay 1.0.0
+[2026-10-26T08:39:29.857Z] [INFO]   from pom.xml
+[2026-10-26T08:39:29.857Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-26T08:39:30.408Z] [INFO] 
+[2026-10-26T08:39:30.408Z] [INFO] --- resources:3.5.0:resources (default-resources) @ finsecure-pay ---
+[2026-10-26T08:39:30.408Z] [INFO] Copying 1 resource from src/main/resources to target/classes
+[2026-10-26T08:39:30.408Z] [INFO] Copying 0 resource from src/main/resources to target/classes
+[2026-10-26T08:39:30.408Z] [INFO] 
+[2026-10-26T08:39:30.408Z] [INFO] --- compiler:3.15.0:compile (default-compile) @ finsecure-pay ---
+[2026-10-26T08:39:30.408Z] [INFO] Nothing to compile - all classes are up to date.
+[2026-10-26T08:39:30.408Z] [INFO] 
+[2026-10-26T08:39:30.408Z] [INFO] --- resources:3.5.0:testResources (default-testResources) @ finsecure-pay ---
+[2026-10-26T08:39:30.408Z] [INFO] skip non existing resourceDirectory /var/jenkins_home/jobs/finsecure-pay/workspace/src/test/resources
+[2026-10-26T08:39:30.408Z] [INFO] 
+[2026-10-26T08:39:30.408Z] [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ finsecure-pay ---
+[2026-10-26T08:39:30.658Z] [INFO] Recompiling the module because of changed source code.
+[2026-10-26T08:39:30.658Z] [INFO] Compiling 2 source files with javac [debug parameters release 25] to target/test-classes
+[2026-10-26T08:39:31.209Z] [INFO] 
+[2026-10-26T08:39:31.209Z] [INFO] --- surefire:3.5.6:test (default-test) @ finsecure-pay ---
+[2026-10-26T08:39:31.459Z] [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[2026-10-26T08:39:31.459Z] [INFO] 
+[2026-10-26T08:39:31.459Z] [INFO] -------------------------------------------------------
+[2026-10-26T08:39:31.459Z] [INFO]  T E S T S
+[2026-10-26T08:39:31.459Z] [INFO] -------------------------------------------------------
+[2026-10-26T08:39:32.371Z] [INFO] Running com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:39:32.371Z] 08:39:32.233 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-26T08:39:32.621Z] 08:39:32.417 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:39:32.621Z] 08:39:32.419 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-26T08:39:32.621Z] 08:39:32.432 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:39:32.872Z] 
+[2026-10-26T08:39:32.872Z]   .   ____          _            __ _ _
+[2026-10-26T08:39:32.872Z]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[2026-10-26T08:39:32.872Z] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[2026-10-26T08:39:32.872Z]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[2026-10-26T08:39:32.872Z]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[2026-10-26T08:39:32.872Z]  =========|_|==============|___/=/_/_/_/
+[2026-10-26T08:39:32.872Z] 
+[2026-10-26T08:39:32.872Z]  :: Spring Boot ::                (v4.1.2)
+[2026-10-26T08:39:32.872Z] 
+[2026-10-26T08:39:32.872Z] 2026-10-26T08:39:32.774Z  INFO 3244 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Starting TransactionControllerTest using Java 25.0.5 with PID 3244 (started by root in /var/jenkins_home/jobs/finsecure-pay/workspace)
+[2026-10-26T08:39:32.872Z] 2026-10-26T08:39:32.775Z  INFO 3244 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : No active profile set, falling back to 1 default profile: "default"
+[2026-10-26T08:39:33.783Z] 2026-10-26T08:39:33.489Z  INFO 3244 --- [finsecure-pay] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+[2026-10-26T08:39:33.783Z] 2026-10-26T08:39:33.490Z  INFO 3244 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+[2026-10-26T08:39:33.783Z] 2026-10-26T08:39:33.492Z  INFO 3244 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+[2026-10-26T08:39:33.783Z] 2026-10-26T08:39:33.517Z  INFO 3244 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Started TransactionControllerTest in 1.016 seconds (process running for 2.09)
+[2026-10-26T08:39:33.783Z] Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+[2026-10-26T08:39:34.334Z] 2026-10-26T08:39:34.039Z  INFO 3244 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T1 status=VALID errors=[]
+[2026-10-26T08:39:34.334Z] 2026-10-26T08:39:34.102Z  WARN 3244 --- [finsecure-pay] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('b' (code 98)): was expecting double-quote to start property name]
+[2026-10-26T08:39:34.334Z] 2026-10-26T08:39:34.110Z  INFO 3244 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T2 status=INVALID errors=[amount must be greater than zero]
+[2026-10-26T08:39:34.334Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.066 s -- in com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:39:34.334Z] [INFO] Running com.finsecure.pay.service.TransactionValidatorTest
+[2026-10-26T08:39:34.334Z] [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in com.finsecure.pay.service.TransactionValidatorTest
+[2026-10-26T08:39:34.334Z] [INFO] 
+[2026-10-26T08:39:34.334Z] [INFO] Results:
+[2026-10-26T08:39:34.334Z] [INFO] 
+[2026-10-26T08:39:34.334Z] [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+[2026-10-26T08:39:34.334Z] [INFO] 
+[2026-10-26T08:39:34.334Z] [INFO] ------------------------------------------------------------------------
+[2026-10-26T08:39:34.334Z] [INFO] BUILD SUCCESS
+[2026-10-26T08:39:34.334Z] [INFO] ------------------------------------------------------------------------
+[2026-10-26T08:39:34.334Z] [INFO] Total time:  4.651 s
+[2026-10-26T08:39:34.334Z] [INFO] Finished at: 2026-10-26T08:39:34Z
+[2026-10-26T08:39:34.334Z] [INFO] ------------------------------------------------------------------------
+Post stage
+[2026-10-26T08:39:34.384Z] Recording test results
+[2026-10-26T08:39:34.400Z] [Checks API] No suitable checks publisher found.
+[2026-10-26T08:39:34.828Z] + mvn -B -q package -DskipTests
+[2026-10-26T08:39:34.828Z] 
+Post stage
+[2026-10-26T08:39:37.605Z] Archiving artifacts
+[2026-10-26T08:39:37.611Z] Recording fingerprints
+[2026-10-26T08:39:37.986Z] Injecting SonarQube environment variables using the configuration: sonarqube
+[2026-10-26T08:39:38.266Z] + trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format table --output trivy-deps-report.txt pom.xml
+[2026-10-26T08:39:38.267Z] 2026-10-26T08:39:38Z	INFO	[vuln] Vulnerability scanning is enabled
+[2026-10-26T08:39:38.354Z] + mvn -B -q org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=finsecure-pay
+[2026-10-26T08:39:38.354Z] 
+[2026-10-26T08:39:38.517Z] 2026-10-26T08:39:38Z	INFO	Number of language-specific files	num=1
+[2026-10-26T08:39:38.517Z] 2026-10-26T08:39:38Z	INFO	[pom] Detecting vulnerabilities...
+Post stage
+[2026-10-26T08:39:38.815Z] + cat trivy-deps-report.txt
+[2026-10-26T08:39:38.815Z] 
+[2026-10-26T08:39:38.815Z] Report Summary
+[2026-10-26T08:39:38.815Z] 
+[2026-10-26T08:39:38.815Z] ┌─────────┬──────┬─────────────────┐
+[2026-10-26T08:39:38.815Z] │ Target  │ Type │ Vulnerabilities │
+[2026-10-26T08:39:38.815Z] ├─────────┼──────┼─────────────────┤
+[2026-10-26T08:39:38.815Z] │ pom.xml │ pom  │        0        │
+[2026-10-26T08:39:38.815Z] └─────────┴──────┴─────────────────┘
+[2026-10-26T08:39:38.815Z] Legend:
+[2026-10-26T08:39:38.815Z] - '-': Not scanned
+[2026-10-26T08:39:38.815Z] - '0': Clean (no security findings detected)
+[2026-10-26T08:39:38.815Z] 
+[2026-10-26T08:39:38.862Z] Archiving artifacts
+[2026-10-26T08:39:50.825Z] Timeout set to expire in 5 min 0 sec
+[2026-10-26T08:39:50.907Z] Checking status of SonarQube task '047c6c6b-b0a6-4259-8e8d-65a27c4c93a7' on server 'sonarqube'
+[2026-10-26T08:39:50.918Z] SonarQube task '047c6c6b-b0a6-4259-8e8d-65a27c4c93a7' status is 'IN_PROGRESS'
+[2026-10-26T08:39:51.133Z] SonarQube task '047c6c6b-b0a6-4259-8e8d-65a27c4c93a7' status is 'SUCCESS'
+[2026-10-26T08:39:51.133Z] SonarQube task '047c6c6b-b0a6-4259-8e8d-65a27c4c93a7' completed. Quality gate is 'OK'
+[2026-10-26T08:39:51.781Z] + docker build -t selvig88/finsecure-pay:1.0.5-3a57543 .
+[2026-10-26T08:39:52.333Z] #0 building with "default" instance using docker driver
+[2026-10-26T08:39:52.333Z] 
+[2026-10-26T08:39:52.333Z] #1 [internal] load build definition from Dockerfile
+[2026-10-26T08:39:52.333Z] #1 transferring dockerfile: 801B done
+[2026-10-26T08:39:52.333Z] #1 DONE 0.0s
+[2026-10-26T08:39:52.333Z] 
+[2026-10-26T08:39:52.333Z] #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+[2026-10-26T08:39:57.529Z] #2 DONE 4.6s
+[2026-10-26T08:39:57.529Z] 
+[2026-10-26T08:39:57.529Z] #3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+[2026-10-26T08:39:57.529Z] #3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+[2026-10-26T08:39:57.529Z] #3 CACHED
+[2026-10-26T08:39:57.529Z] 
+[2026-10-26T08:39:57.529Z] #4 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25
+[2026-10-26T08:39:58.440Z] #4 ...
+[2026-10-26T08:39:58.440Z] 
+[2026-10-26T08:39:58.440Z] #5 [internal] load metadata for docker.io/library/eclipse-temurin:25-jre
+[2026-10-26T08:39:58.440Z] #5 DONE 1.5s
+[2026-10-26T08:39:58.440Z] 
+[2026-10-26T08:39:58.440Z] #4 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25
+[2026-10-26T08:39:58.440Z] #4 DONE 1.6s
+[2026-10-26T08:39:58.440Z] 
+[2026-10-26T08:39:58.440Z] #6 [internal] load .dockerignore
+[2026-10-26T08:39:58.440Z] #6 transferring context: 116B done
+[2026-10-26T08:39:58.440Z] #6 DONE 0.0s
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #7 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976
+[2026-10-26T08:39:58.690Z] #7 resolve docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976 0.1s done
+[2026-10-26T08:39:58.690Z] #7 DONE 0.1s
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #8 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+[2026-10-26T08:39:58.690Z] #8 resolve docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f 0.1s done
+[2026-10-26T08:39:58.690Z] #8 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #9 [internal] load build context
+[2026-10-26T08:39:58.690Z] #9 transferring context: 1.44kB done
+[2026-10-26T08:39:58.690Z] #9 DONE 0.0s
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #10 [build 3/6] COPY pom.xml .
+[2026-10-26T08:39:58.690Z] #10 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #11 [build 5/6] COPY src ./src
+[2026-10-26T08:39:58.690Z] #11 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #12 [build 4/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -q dependency:go-offline
+[2026-10-26T08:39:58.690Z] #12 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #13 [build 2/6] WORKDIR /workspace
+[2026-10-26T08:39:58.690Z] #13 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.690Z] #14 [build 6/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -q clean package -DskipTests
+[2026-10-26T08:39:58.690Z] #14 CACHED
+[2026-10-26T08:39:58.690Z] 
+[2026-10-26T08:39:58.691Z] #15 [stage-1 2/4] RUN rm -f /usr/bin/pebble  && groupadd --system app && useradd --system --gid app --no-create-home app
+[2026-10-26T08:39:58.941Z] #15 DONE 0.4s
+[2026-10-26T08:39:59.191Z] 
+[2026-10-26T08:39:59.191Z] #16 [stage-1 3/4] WORKDIR /app
+[2026-10-26T08:39:59.191Z] #16 DONE 0.1s
+[2026-10-26T08:39:59.191Z] 
+[2026-10-26T08:39:59.191Z] #17 [stage-1 4/4] COPY --from=build /workspace/target/finsecure-pay-*.jar app.jar
+[2026-10-26T08:39:59.191Z] #17 DONE 0.1s
+[2026-10-26T08:39:59.191Z] 
+[2026-10-26T08:39:59.191Z] #18 exporting to image
+[2026-10-26T08:39:59.191Z] #18 exporting layers
+[2026-10-26T08:40:00.103Z] #18 exporting layers 0.8s done
+[2026-10-26T08:40:00.103Z] #18 exporting manifest sha256:f6f7a6890542b3a23799146d5c582c6e18274f69291c6b54babf6819439f578a 0.0s done
+[2026-10-26T08:40:00.103Z] #18 exporting config sha256:eba7635e9a15bea98120e2bcb19b6b53ed1072903eb1f681bf7b8c8804585d65 0.0s done
+[2026-10-26T08:40:00.103Z] #18 exporting attestation manifest sha256:48300454d41a284d51244175b8316cc484ace9e9603ef0c599e5be9192b44201 0.1s done
+[2026-10-26T08:40:00.103Z] #18 exporting manifest list sha256:ad1d38b4336e7d6d018e7ffe1b340680c3afbc918704898d2b0800333694a4ea
+[2026-10-26T08:40:00.353Z] #18 exporting manifest list sha256:ad1d38b4336e7d6d018e7ffe1b340680c3afbc918704898d2b0800333694a4ea 0.0s done
+[2026-10-26T08:40:00.353Z] #18 naming to docker.io/selvig88/finsecure-pay:1.0.5-3a57543 done
+[2026-10-26T08:40:00.353Z] #18 unpacking to docker.io/selvig88/finsecure-pay:1.0.5-3a57543
+[2026-10-26T08:40:00.353Z] #18 unpacking to docker.io/selvig88/finsecure-pay:1.0.5-3a57543 0.2s done
+[2026-10-26T08:40:00.604Z] #18 DONE 1.2s
+[2026-10-26T08:40:01.059Z] + trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --format table --output trivy-report.txt selvig88/finsecure-pay:1.0.5-3a57543
+[2026-10-26T08:40:01.059Z] 2026-10-26T08:40:00Z	INFO	[vuln] Vulnerability scanning is enabled
+[2026-10-26T08:40:01.059Z] 2026-10-26T08:40:00Z	INFO	[secret] Secret scanning is enabled
+[2026-10-26T08:40:01.059Z] 2026-10-26T08:40:00Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+[2026-10-26T08:40:01.059Z] 2026-10-26T08:40:00Z	INFO	[secret] Please see https://trivy.dev/docs/v0.76/guide/scanner/secret#recommendation for faster secret detection
+[2026-10-26T08:40:06.255Z] 2026-10-26T08:40:05Z	INFO	Detected OS	family="ubuntu" version="26.04"
+[2026-10-26T08:40:06.255Z] 2026-10-26T08:40:05Z	INFO	[ubuntu] Detecting vulnerabilities...	os_version="26.04" pkg_num=106
+[2026-10-26T08:40:06.255Z] 2026-10-26T08:40:05Z	INFO	Number of language-specific files	num=1
+[2026-10-26T08:40:06.255Z] 2026-10-26T08:40:05Z	INFO	[jar] Detecting vulnerabilities...
+Post stage
+[2026-10-26T08:40:06.553Z] + cat trivy-report.txt
+[2026-10-26T08:40:06.553Z] 
+[2026-10-26T08:40:06.553Z] Report Summary
+[2026-10-26T08:40:06.553Z] 
+[2026-10-26T08:40:06.553Z] ┌─────────────────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+[2026-10-26T08:40:06.553Z] │                       Target                        │  Type  │ Vulnerabilities │ Secrets │
+[2026-10-26T08:40:06.553Z] ├─────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+[2026-10-26T08:40:06.553Z] │ selvig88/finsecure-pay:1.0.5-3a57543 (ubuntu 26.04) │ ubuntu │        0        │    -    │
+[2026-10-26T08:40:06.553Z] ├─────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+[2026-10-26T08:40:06.553Z] │ app/app.jar                                         │  jar   │        0        │    -    │
+[2026-10-26T08:40:06.553Z] └─────────────────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+[2026-10-26T08:40:06.553Z] Legend:
+[2026-10-26T08:40:06.553Z] - '-': Not scanned
+[2026-10-26T08:40:06.553Z] - '0': Clean (no security findings detected)
+[2026-10-26T08:40:06.553Z] 
+[2026-10-26T08:40:06.596Z] Archiving artifacts
+[2026-10-26T08:40:06.843Z] Masking supported pattern matches of $DH_PASS
+[2026-10-26T08:40:07.159Z] + + echodocker **** login
+[2026-10-26T08:40:07.159Z]  -u selvig88 --password-stdin
+[2026-10-26T08:40:09.022Z] WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+[2026-10-26T08:40:09.022Z] Configure a credential helper to remove this warning. See
+[2026-10-26T08:40:09.022Z] https://docs.docker.com/engine/reference/commandline/login/#credential-stores
+[2026-10-26T08:40:09.022Z] 
+[2026-10-26T08:40:09.022Z] Login Succeeded
+[2026-10-26T08:40:09.022Z] + docker push selvig88/finsecure-pay:1.0.5-3a57543
+[2026-10-26T08:40:09.022Z] The push refers to repository [docker.io/selvig88/finsecure-pay]
+[2026-10-26T08:40:09.273Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.273Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.273Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.273Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.273Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.273Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.273Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.273Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.273Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.273Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.273Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.273Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.273Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.273Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.273Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.273Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.273Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.273Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.273Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.273Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.524Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.524Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.524Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.524Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.524Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.524Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.524Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.524Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.524Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.524Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.524Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.524Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.524Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.524Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.524Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.524Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.524Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.524Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.524Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.524Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.524Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.524Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.524Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.524Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.524Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.524Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.524Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.524Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.524Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.524Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.775Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.775Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.775Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.775Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.775Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.775Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.775Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:09.775Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.775Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.775Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.775Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:09.775Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:09.775Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:09.775Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:09.775Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:09.775Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:09.775Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:09.775Z] a289597724f2: Waiting
+[2026-10-26T08:40:09.775Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:09.775Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.026Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.026Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.026Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.026Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.026Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.026Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.026Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.026Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.026Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.026Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.026Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.026Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.026Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.026Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.026Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.026Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.026Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.026Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.026Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.026Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.026Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.026Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.026Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.026Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.026Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.026Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.026Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.026Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.026Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.026Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.277Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.277Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.277Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.277Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.277Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.277Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.277Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.277Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.277Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.277Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.277Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.277Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.277Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.277Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.277Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.277Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.277Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.277Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.277Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.277Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.528Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.528Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.528Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.528Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.528Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.528Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.528Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.528Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.528Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.528Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.528Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.528Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.528Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.528Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.528Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.528Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.528Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.528Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.528Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.528Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.528Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.528Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.528Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.528Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.528Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.528Z] 5787b8fa2914: Waiting
+[2026-10-26T08:40:10.528Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.528Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.528Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.528Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.779Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.779Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.779Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.779Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.779Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.779Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.779Z] 5787b8fa2914: Layer already exists
+[2026-10-26T08:40:10.779Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.779Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.779Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.779Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.779Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.779Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:10.779Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.779Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.779Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.779Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.779Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.779Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.779Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:10.779Z] a289597724f2: Waiting
+[2026-10-26T08:40:10.779Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:10.779Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:10.779Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:10.779Z] 9abc7098f0ed: Waiting
+[2026-10-26T08:40:10.779Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:10.779Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:10.779Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:11.030Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.030Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.030Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:11.030Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:11.030Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:11.030Z] 9abc7098f0ed: Layer already exists
+[2026-10-26T08:40:11.030Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:11.030Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:11.030Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:11.030Z] 435bf5c20694: Waiting
+[2026-10-26T08:40:11.030Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.030Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.030Z] 2e60e4e3b521: Waiting
+[2026-10-26T08:40:11.030Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:11.030Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:11.030Z] 4f4fb700ef54: Waiting
+[2026-10-26T08:40:11.030Z] d9d511d19a19: Waiting
+[2026-10-26T08:40:11.281Z] d562d6598ba5: Waiting
+[2026-10-26T08:40:11.281Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:11.281Z] 4f4fb700ef54: Layer already exists
+[2026-10-26T08:40:11.281Z] d9d511d19a19: Layer already exists
+[2026-10-26T08:40:11.281Z] 435bf5c20694: Layer already exists
+[2026-10-26T08:40:11.281Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.281Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.281Z] 2e60e4e3b521: Layer already exists
+[2026-10-26T08:40:11.281Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.281Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.281Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:11.281Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.281Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.281Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:11.531Z] 9a5a950e44b9: Waiting
+[2026-10-26T08:40:11.531Z] a289597724f2: Waiting
+[2026-10-26T08:40:11.531Z] f5aca4c1d6ed: Waiting
+[2026-10-26T08:40:12.082Z] d562d6598ba5: Pushed
+[2026-10-26T08:40:12.633Z] 9a5a950e44b9: Pushed
+[2026-10-26T08:40:12.633Z] f5aca4c1d6ed: Pushed
+[2026-10-26T08:40:30.591Z] a289597724f2: Pushed
+[2026-10-26T08:40:31.936Z] 1.0.5-3a57543: digest: sha256:ad1d38b4336e7d6d018e7ffe1b340680c3afbc918704898d2b0800333694a4ea size: 856
+[2026-10-26T08:40:31.936Z] + docker logout
+[2026-10-26T08:40:32.187Z] Removing login credentials for https://index.docker.io/v1/
+[2026-10-26T08:40:32.448Z] Masking supported pattern matches of $KUBECONFIG
+[2026-10-26T08:40:32.749Z] + sed s|image: .*finsecure-pay:.*|image: selvig88/finsecure-pay:1.0.5-3a57543| k8s/deployment-service.yaml
+[2026-10-26T08:40:32.749Z] + kubectl apply -f -
+[2026-10-26T08:40:39.232Z] deployment.apps/finsecure-pay configured
+[2026-10-26T08:40:39.232Z] service/finsecure-pay unchanged
+[2026-10-26T08:40:39.232Z] + kubectl -n finsecure annotate deployment/finsecure-pay kubernetes.io/change-cause=Jenkins build 5 (1.0.5-3a57543) --overwrite
+[2026-10-26T08:40:40.577Z] deployment.apps/finsecure-pay annotated
+[2026-10-26T08:40:40.577Z] + kubectl -n finsecure rollout status deployment/finsecure-pay --timeout=180s
+[2026-10-26T08:40:41.488Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:41:03.288Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:41:03.288Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:41:03.288Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+[2026-10-26T08:41:25.087Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+[2026-10-26T08:41:25.087Z] deployment "finsecure-pay" successfully rolled out
+[2026-10-26T08:41:25.087Z] + kubectl -n finsecure get pods -o wide
+[2026-10-26T08:41:25.087Z] NAME                             READY   STATUS    RESTARTS   AGE    IP               NODE                             NOMINATED NODE   READINESS GATES
+[2026-10-26T08:41:25.087Z] finsecure-pay-68f747898d-z92pt   0/1     Error     0          150m   192.168.43.201   ip-192-168-43-82.ec2.internal    <none>           <none>
+[2026-10-26T08:41:25.088Z] finsecure-pay-7c96b8fb4-fxrns    1/1     Running   0          21s    192.168.58.122   ip-192-168-43-82.ec2.internal    <none>           <none>
+[2026-10-26T08:41:25.088Z] finsecure-pay-7c96b8fb4-grpzw    1/1     Running   0          45s    192.168.5.28     ip-192-168-15-185.ec2.internal   <none>           <none>
+[2026-10-26T08:41:25.321Z] Sending email to: <notification-email>
+Finished: SUCCESS
+

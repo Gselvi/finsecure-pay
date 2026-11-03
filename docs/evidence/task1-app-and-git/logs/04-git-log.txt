@@ -1,0 +1,8 @@
+ce4b67f Gselvi 2026-10-24 Set Docker Hub namespace and update status notes
+e63d303 Gselvi 2026-10-24 Add project status and remaining steps
+f42803b Gselvi 2026-10-24 Add design document, runbook and README
+af19ca3 Gselvi 2026-10-24 Add Prometheus alerts, Grafana dashboard and Alertmanager email config
+c02f57e Gselvi 2026-10-24 Add Jenkins CI/CD pipeline with security gates and rollback
+23a89c4 Gselvi 2026-10-24 Add Kubernetes ConfigMap, Deployment and Service
+952637b Gselvi 2026-10-24 Add multi-stage non-root Dockerfile
+6245b79 Gselvi 2026-10-24 Add transaction validation API with JUnit 5 tests and Prometheus metrics

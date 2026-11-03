@@ -1,0 +1,30 @@
+$ kubectl get nodes
+NAME                             STATUS   ROLES    AGE     VERSION
+ip-192-168-15-185.ec2.internal   Ready    <none>   9m36s   v1.34.12-eks-39aca56
+ip-192-168-43-82.ec2.internal    Ready    <none>   9m36s   v1.34.12-eks-39aca56
+
+$ kubectl -n finsecure get pods,svc,cm
+NAME                                 READY   STATUS    RESTARTS   AGE
+pod/finsecure-pay-68f747898d-8mhvg   1/1     Running   0          82s
+pod/finsecure-pay-68f747898d-z92pt   1/1     Running   0          63s
+
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
+service/finsecure-pay   LoadBalancer   10.100.226.246   a56517620faf94908afae2df4df39d14-971040356.us-east-1.elb.amazonaws.com   80:31549/TCP   6m22s
+
+NAME                             DATA   AGE
+configmap/finsecure-pay-config   2      6m24s
+configmap/kube-root-ca.crt       1      6m25s
+
+$ kubectl -n finsecure get deploy finsecure-pay
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+finsecure-pay   2/2     2            2           6m25s
+
+$ kubectl -n finsecure describe deploy finsecure-pay | probes + replicas
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+RollingUpdateStrategy:  0 max unavailable, 1 max surge
+    Image:      selvig88/finsecure-pay:1.0.0
+    Liveness:   http-get http://:http/actuator/health/liveness delay=30s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:http/actuator/health/readiness delay=15s timeout=1s period=5s #success=1 #failure=3
+    Environment Variables from:
+      finsecure-pay-config  ConfigMap  Optional: false

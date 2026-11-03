@@ -1,0 +1,22 @@
+$ curl -i http://localhost:8080/health
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 24 Oct 2026 04:02:20 GMT
+
+{"service":"finsecure-pay","status":"UP"}
+
+$ POST /validate  (valid)
+request : {"transactionId":"T1001","fromAccount":"ACC-1","toAccount":"ACC-2","amount":250.00,"currency":"USD"}
+{"transactionId":"T1001","status":"VALID","errors":[],"valid":true}
+HTTP 200
+
+$ POST /validate  (invalid-multiple-errors)
+request : {"transactionId":"T1002","fromAccount":"ACC-1","toAccount":"ACC-1","amount":0,"currency":"XYZ"}
+{"transactionId":"T1002","status":"INVALID","errors":["fromAccount and toAccount must be different","amount must be greater than zero","currency 'XYZ' is not supported"],"valid":false}
+HTTP 400
+
+$ POST /validate  (invalid-over-limit)
+request : {"transactionId":"T1003","fromAccount":"ACC-1","toAccount":"ACC-2","amount":50000,"currency":"EUR"}
+{"transactionId":"T1003","status":"INVALID","errors":["amount exceeds the maximum allowed limit of 10000"],"valid":false}
+HTTP 400

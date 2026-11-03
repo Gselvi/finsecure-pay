@@ -1,0 +1,176 @@
+Started by user admin
+Checking out git https://github.com/Gselvi/finsecure-pay.git into /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090 to read Jenkinsfile
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 486883a9c470713c3331d63bc54819ee688a057a (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 486883a9c470713c3331d63bc54819ee688a057a # timeout=10
+Commit message: "DEMO: add a controlled failing test to prove the pipeline blocks deployment"
+ > git rev-list --no-walk 3a575430d5e2c25d6fb4d6a05b5b91ba66c197fb # timeout=10
+Running on Jenkins in /var/jenkins_home/jobs/finsecure-pay/workspace
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 486883a9c470713c3331d63bc54819ee688a057a (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 486883a9c470713c3331d63bc54819ee688a057a # timeout=10
+Commit message: "DEMO: add a controlled failing test to prove the pipeline blocks deployment"
+Stage "Rollback" skipped due to when conditional
+[2026-10-26T08:44:29.275Z] The recommended git tool is: NONE
+[2026-10-26T08:44:29.275Z] No credentials specified
+[2026-10-26T08:44:29.275Z]  > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+[2026-10-26T08:44:29.278Z] Fetching changes from the remote Git repository
+[2026-10-26T08:44:29.281Z]  > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+[2026-10-26T08:44:29.288Z] Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+[2026-10-26T08:44:29.288Z]  > git --version # timeout=10
+[2026-10-26T08:44:29.293Z]  > git --version # 'git version 2.47.3'
+[2026-10-26T08:44:29.293Z]  > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-26T08:44:29.988Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-10-26T08:44:29.991Z] Checking out Revision 486883a9c470713c3331d63bc54819ee688a057a (refs/remotes/origin/main)
+[2026-10-26T08:44:29.991Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-26T08:44:29.996Z]  > git checkout -f 486883a9c470713c3331d63bc54819ee688a057a # timeout=10
+[2026-10-26T08:44:30.000Z] Commit message: "DEMO: add a controlled failing test to prove the pipeline blocks deployment"
+[2026-10-26T08:44:30.308Z] + git rev-parse --short HEAD
+[2026-10-26T08:44:30.707Z] + mvn -B -q clean compile
+[2026-10-26T08:44:30.707Z] 
+[2026-10-26T08:44:33.775Z] + mvn -B test
+[2026-10-26T08:44:33.776Z] 
+[2026-10-26T08:44:34.577Z] [INFO] Scanning for projects...
+[2026-10-26T08:44:34.827Z] [INFO] 
+[2026-10-26T08:44:34.827Z] [INFO] --------------------< com.finsecure:finsecure-pay >---------------------
+[2026-10-26T08:44:34.827Z] [INFO] Building finsecure-pay 1.0.0
+[2026-10-26T08:44:34.827Z] [INFO]   from pom.xml
+[2026-10-26T08:44:34.827Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-26T08:44:35.078Z] [INFO] 
+[2026-10-26T08:44:35.078Z] [INFO] --- resources:3.5.0:resources (default-resources) @ finsecure-pay ---
+[2026-10-26T08:44:35.328Z] [INFO] Copying 1 resource from src/main/resources to target/classes
+[2026-10-26T08:44:35.328Z] [INFO] Copying 0 resource from src/main/resources to target/classes
+[2026-10-26T08:44:35.328Z] [INFO] 
+[2026-10-26T08:44:35.328Z] [INFO] --- compiler:3.15.0:compile (default-compile) @ finsecure-pay ---
+[2026-10-26T08:44:35.328Z] [INFO] Nothing to compile - all classes are up to date.
+[2026-10-26T08:44:35.328Z] [INFO] 
+[2026-10-26T08:44:35.328Z] [INFO] --- resources:3.5.0:testResources (default-testResources) @ finsecure-pay ---
+[2026-10-26T08:44:35.328Z] [INFO] skip non existing resourceDirectory /var/jenkins_home/jobs/finsecure-pay/workspace/src/test/resources
+[2026-10-26T08:44:35.328Z] [INFO] 
+[2026-10-26T08:44:35.328Z] [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ finsecure-pay ---
+[2026-10-26T08:44:35.328Z] [INFO] Recompiling the module because of changed source code.
+[2026-10-26T08:44:35.328Z] [INFO] Compiling 3 source files with javac [debug parameters release 25] to target/test-classes
+[2026-10-26T08:44:36.239Z] [INFO] 
+[2026-10-26T08:44:36.240Z] [INFO] --- surefire:3.5.6:test (default-test) @ finsecure-pay ---
+[2026-10-26T08:44:36.240Z] [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[2026-10-26T08:44:36.240Z] [INFO] 
+[2026-10-26T08:44:36.240Z] [INFO] -------------------------------------------------------
+[2026-10-26T08:44:36.240Z] [INFO]  T E S T S
+[2026-10-26T08:44:36.240Z] [INFO] -------------------------------------------------------
+[2026-10-26T08:44:36.790Z] [INFO] Running com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:44:37.041Z] 08:44:36.746 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-26T08:44:37.041Z] 08:44:36.859 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:44:37.041Z] 08:44:36.861 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.finsecure.pay.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-26T08:44:37.041Z] 08:44:36.871 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.finsecure.pay.FinSecurePayApplication for test class com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:44:37.291Z] 
+[2026-10-26T08:44:37.291Z]   .   ____          _            __ _ _
+[2026-10-26T08:44:37.291Z]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[2026-10-26T08:44:37.291Z] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[2026-10-26T08:44:37.291Z]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[2026-10-26T08:44:37.291Z]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[2026-10-26T08:44:37.291Z]  =========|_|==============|___/=/_/_/_/
+[2026-10-26T08:44:37.291Z] 
+[2026-10-26T08:44:37.291Z]  :: Spring Boot ::                (v4.1.2)
+[2026-10-26T08:44:37.291Z] 
+[2026-10-26T08:44:37.291Z] 2026-10-26T08:44:37.165Z  INFO 4347 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Starting TransactionControllerTest using Java 25.0.5 with PID 4347 (started by root in /var/jenkins_home/jobs/finsecure-pay/workspace)
+[2026-10-26T08:44:37.291Z] 2026-10-26T08:44:37.166Z  INFO 4347 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : No active profile set, falling back to 1 default profile: "default"
+[2026-10-26T08:44:37.843Z] 2026-10-26T08:44:37.805Z  INFO 4347 --- [finsecure-pay] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+[2026-10-26T08:44:37.843Z] 2026-10-26T08:44:37.805Z  INFO 4347 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+[2026-10-26T08:44:37.843Z] 2026-10-26T08:44:37.807Z  INFO 4347 --- [finsecure-pay] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+[2026-10-26T08:44:37.843Z] 2026-10-26T08:44:37.827Z  INFO 4347 --- [finsecure-pay] [           main] c.f.p.c.TransactionControllerTest        : Started TransactionControllerTest in 0.912 seconds (process running for 1.739)
+[2026-10-26T08:44:38.093Z] Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+[2026-10-26T08:44:38.594Z] 2026-10-26T08:44:38.317Z  INFO 4347 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T1 status=VALID errors=[]
+[2026-10-26T08:44:38.594Z] 2026-10-26T08:44:38.370Z  WARN 4347 --- [finsecure-pay] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('b' (code 98)): was expecting double-quote to start property name]
+[2026-10-26T08:44:38.594Z] 2026-10-26T08:44:38.379Z  INFO 4347 --- [finsecure-pay] [           main] c.f.p.controller.TransactionController   : Validated transaction id=T2 status=INVALID errors=[amount must be greater than zero]
+[2026-10-26T08:44:38.594Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.776 s -- in com.finsecure.pay.controller.TransactionControllerTest
+[2026-10-26T08:44:38.594Z] [INFO] Running com.finsecure.pay.service.TransactionValidatorTest
+[2026-10-26T08:44:38.594Z] [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.finsecure.pay.service.TransactionValidatorTest
+[2026-10-26T08:44:38.594Z] [INFO] Running com.finsecure.pay.service.ControlledFailureTest
+[2026-10-26T08:44:38.594Z] [ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! -- in com.finsecure.pay.service.ControlledFailureTest
+[2026-10-26T08:44:38.594Z] [ERROR] com.finsecure.pay.service.ControlledFailureTest.deliberatelyFailingTest -- Time elapsed: 0.008 s <<< FAILURE!
+[2026-10-26T08:44:38.594Z] org.opentest4j.AssertionFailedError: controlled failure for the CI/CD demo ==> expected: <1> but was: <2>
+[2026-10-26T08:44:38.594Z] 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+[2026-10-26T08:44:38.594Z] 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+[2026-10-26T08:44:38.594Z] 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:201)
+[2026-10-26T08:44:38.594Z] 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:152)
+[2026-10-26T08:44:38.594Z] 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:590)
+[2026-10-26T08:44:38.594Z] 	at com.finsecure.pay.service.ControlledFailureTest.deliberatelyFailingTest(ControlledFailureTest.java:12)
+[2026-10-26T08:44:38.594Z] 
+[2026-10-26T08:44:38.594Z] [INFO] 
+[2026-10-26T08:44:38.594Z] [INFO] Results:
+[2026-10-26T08:44:38.594Z] [INFO] 
+[2026-10-26T08:44:38.594Z] [ERROR] Failures: 
+[2026-10-26T08:44:38.594Z] [ERROR]   ControlledFailureTest.deliberatelyFailingTest:12 controlled failure for the CI/CD demo ==> expected: <1> but was: <2>
+[2026-10-26T08:44:38.594Z] [INFO] 
+[2026-10-26T08:44:38.594Z] [ERROR] Tests run: 17, Failures: 1, Errors: 0, Skipped: 0
+[2026-10-26T08:44:38.594Z] [INFO] 
+[2026-10-26T08:44:38.595Z] [INFO] ------------------------------------------------------------------------
+[2026-10-26T08:44:38.595Z] [INFO] BUILD FAILURE
+[2026-10-26T08:44:38.595Z] [INFO] ------------------------------------------------------------------------
+[2026-10-26T08:44:38.595Z] [INFO] Total time:  4.041 s
+[2026-10-26T08:44:38.595Z] [INFO] Finished at: 2026-10-26T08:44:38Z
+[2026-10-26T08:44:38.595Z] [INFO] ------------------------------------------------------------------------
+[2026-10-26T08:44:38.595Z] [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project finsecure-pay: There are test failures.
+[2026-10-26T08:44:38.595Z] [ERROR] 
+[2026-10-26T08:44:38.595Z] [ERROR] See /var/jenkins_home/jobs/finsecure-pay/workspace/target/surefire-reports for the individual test results.
+[2026-10-26T08:44:38.595Z] [ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[2026-10-26T08:44:38.595Z] [ERROR] -> [Help 1]
+[2026-10-26T08:44:38.595Z] [ERROR] 
+[2026-10-26T08:44:38.595Z] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[2026-10-26T08:44:38.595Z] [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[2026-10-26T08:44:38.595Z] [ERROR] 
+[2026-10-26T08:44:38.595Z] [ERROR] For more information about the errors and possible solutions, please read the following articles:
+[2026-10-26T08:44:38.595Z] [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+Post stage
+[2026-10-26T08:44:38.625Z] Recording test results
+[2026-10-26T08:44:38.635Z] [Checks API] No suitable checks publisher found.
+Stage "Package" skipped due to earlier failure(s)
+Stage "Security Checks" skipped due to earlier failure(s)
+Stage "SonarQube Static Analysis" skipped due to earlier failure(s)
+Stage "Dependency Scan (Trivy)" skipped due to earlier failure(s)
+[2026-10-26T08:44:38.994Z] Failed in branch SonarQube Static Analysis
+[2026-10-26T08:44:39.003Z] Failed in branch Dependency Scan (Trivy)
+Stage "Container Build" skipped due to earlier failure(s)
+Stage "Container Scan (Trivy)" skipped due to earlier failure(s)
+Stage "Push" skipped due to earlier failure(s)
+Stage "Deploy" skipped due to earlier failure(s)
+Error when executing failure post condition:
+java.lang.ClassNotFoundException: hudson.matrix.MatrixBuild
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: 2f23a897-252c-4a50-af47-6d1ac34e36a7
+Caused: java.lang.NoClassDefFoundError: hudson/matrix/MatrixBuild
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.AttachmentUtils$MatrixAssistImpl.getExactRuns(AttachmentUtils.java:315)
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.AttachmentUtils.attachBuildLog(AttachmentUtils.java:294)
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.ExtendedEmailPublisher.createMail(ExtendedEmailPublisher.java:1041)
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.ExtendedEmailPublisher.sendMail(ExtendedEmailPublisher.java:576)
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.EmailExtStep$EmailExtStepExecution.run(EmailExtStep.java:266)
+	at PluginClassLoader for email-ext//hudson.plugins.emailext.EmailExtStep$EmailExtStepExecution.run(EmailExtStep.java:195)
+	at PluginClassLoader for workflow-step-api//org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution.lambda$start$0(SynchronousNonBlockingStepExecution.java:49)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+ERROR: script returned exit code 1
+Finished: FAILURE
+

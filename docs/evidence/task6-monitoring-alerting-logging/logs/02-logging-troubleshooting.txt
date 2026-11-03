@@ -1,0 +1,32 @@
+# Logging and troubleshooting: how application logs are accessed
+
+$ kubectl -n finsecure logs deploy/finsecure-pay --tail=15
+Found 2 pods, using pod/finsecure-pay-56dc77dccf-wg7wl
+2026-11-01T12:12:27.467Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-9] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:30.008Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-1] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:30.747Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-2] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:33.145Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-3] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:33.977Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-7] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:34.775Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-6] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:35.709Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-9] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:36.466Z  INFO 1 --- [finsecure-pay] [io-8080-exec-10] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:40.645Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-2] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:43.130Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-7] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:46.128Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-9] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:48.196Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-1] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:49.751Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-2] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:50.521Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-4] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+2026-11-01T12:12:51.339Z  INFO 1 --- [finsecure-pay] [nio-8080-exec-5] c.f.p.controller.TransactionController   : Validated transaction id=X status=INVALID errors=[fromAccount and toAccount must be different, amount must be greater than zero, currency 'XXX' is not supported]
+
+$ kubectl -n finsecure logs -l app=finsecure-pay --tail=200 | Select-String "status=INVALID" (count)
+281
+
+$ kubectl -n finsecure get events --sort-by=.lastTimestamp (last 8)
+No resources found in finsecure namespace.
+
+$ kubectl -n finsecure describe pod (probe section, first pod)
+    Image:          selvig88/finsecure-pay:1.0.9-29730bf
+    State:          Running
+    Restart Count:  0
+    Liveness:   http-get http://:http/actuator/health/liveness delay=30s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:http/actuator/health/readiness delay=15s timeout=1s period=5s #success=1 #failure=3

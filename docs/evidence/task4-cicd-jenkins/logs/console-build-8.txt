@@ -1,0 +1,59 @@
+Started by user admin
+Checking out git https://github.com/Gselvi/finsecure-pay.git into /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090 to read Jenkinsfile
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace@script/95fd318caeb35054664db17d9f7b0ff478786056bc01239607495f4235af9090/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 20be7a458df8b815c9deb7683c61551d35723326 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 20be7a458df8b815c9deb7683c61551d35723326 # timeout=10
+Commit message: "Revert controlled failing test; ship new version"
+ > git rev-list --no-walk 20be7a458df8b815c9deb7683c61551d35723326 # timeout=10
+Running on Jenkins in /var/jenkins_home/jobs/finsecure-pay/workspace
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/finsecure-pay/workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Gselvi/finsecure-pay.git # timeout=10
+Fetching upstream changes from https://github.com/Gselvi/finsecure-pay.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Gselvi/finsecure-pay.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 20be7a458df8b815c9deb7683c61551d35723326 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 20be7a458df8b815c9deb7683c61551d35723326 # timeout=10
+Commit message: "Revert controlled failing test; ship new version"
+[2026-10-26T08:47:42.967Z] Masking supported pattern matches of $KUBECONFIG
+[2026-10-26T08:47:43.250Z] + kubectl -n finsecure rollout undo deployment/finsecure-pay
+[2026-10-26T08:47:45.074Z] deployment.apps/finsecure-pay rolled back
+[2026-10-26T08:47:45.074Z] + kubectl -n finsecure rollout status deployment/finsecure-pay --timeout=180s
+[2026-10-26T08:47:46.419Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:48:08.219Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:48:08.219Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 out of 2 new replicas have been updated...
+[2026-10-26T08:48:08.219Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+[2026-10-26T08:48:22.983Z] Waiting for deployment "finsecure-pay" rollout to finish: 1 old replicas are pending termination...
+[2026-10-26T08:48:22.983Z] deployment "finsecure-pay" successfully rolled out
+[2026-10-26T08:48:22.983Z] + kubectl -n finsecure get deployment finsecure-pay -o wide
+[2026-10-26T08:48:23.534Z] NAME            READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS      IMAGES                                 SELECTOR
+[2026-10-26T08:48:23.534Z] finsecure-pay   2/2     2            2           163m   finsecure-pay   selvig88/finsecure-pay:1.0.5-3a57543   app=finsecure-pay
+Stage "Checkout" skipped due to when conditional
+Stage "Build" skipped due to when conditional
+Stage "Test" skipped due to when conditional
+Stage "Package" skipped due to when conditional
+Stage "Security Checks" skipped due to when conditional
+Stage "SonarQube Static Analysis" skipped due to when conditional
+Stage "Dependency Scan (Trivy)" skipped due to when conditional
+Stage "Container Build" skipped due to when conditional
+Stage "Container Scan (Trivy)" skipped due to when conditional
+Stage "Push" skipped due to when conditional
+Stage "Deploy" skipped due to when conditional
+[2026-10-26T08:48:24.728Z] Sending email to: <notification-email>
+Finished: SUCCESS
+

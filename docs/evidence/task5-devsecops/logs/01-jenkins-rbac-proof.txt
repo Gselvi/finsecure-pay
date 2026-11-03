@@ -1,0 +1,49 @@
+# Least privilege proof for the Jenkins deploy identity (service account jenkins-deployer)
+
+$ kubectl auth can-i --list (namespace finsecure)
+Warning: the list may be incomplete: webhook authorizer does not support user rule resolution
+Resources                                       Non-Resource URLs                      Resource Names   Verbs
+selfsubjectreviews.authentication.k8s.io        []                                     []               [create]
+selfsubjectaccessreviews.authorization.k8s.io   []                                     []               [create]
+selfsubjectrulesreviews.authorization.k8s.io    []                                     []               [create]
+configmaps                                      []                                     []               [get list watch create update patch]
+services                                        []                                     []               [get list watch create update patch]
+deployments.apps                                []                                     []               [get list watch create update patch]
+events                                          []                                     []               [get list watch]
+pods                                            []                                     []               [get list watch]
+replicasets.apps                                []                                     []               [get list watch]
+                                                [/.well-known/openid-configuration/]   []               [get]
+                                                [/.well-known/openid-configuration]    []               [get]
+                                                [/api/*]                               []               [get]
+                                                [/api]                                 []               [get]
+                                                [/apis/*]                              []               [get]
+                                                [/apis]                                []               [get]
+                                                [/healthz]                             []               [get]
+                                                [/healthz]                             []               [get]
+                                                [/livez]                               []               [get]
+                                                [/livez]                               []               [get]
+                                                [/openapi/*]                           []               [get]
+                                                [/openapi]                             []               [get]
+                                                [/openid/v1/jwks/]                     []               [get]
+                                                [/openid/v1/jwks]                      []               [get]
+                                                [/readyz]                              []               [get]
+                                                [/readyz]                              []               [get]
+                                                [/version/]                            []               [get]
+                                                [/version/]                            []               [get]
+                                                [/version]                             []               [get]
+                                                [/version]                             []               [get]
+
+kubectl auth can-i get pods                   -> yes
+kubectl auth can-i patch deployments            -> yes
+kubectl auth can-i get secrets                -> no
+kubectl auth can-i delete namespaces             -> System.Object[]
+kubectl auth can-i get nodes                  -> System.Object[]
+kubectl auth can-i create clusterrolebindings    -> System.Object[]
+
+$ kubectl get secrets -n finsecure (expected: Forbidden)
+Error from server (Forbidden): secrets is forbidden: User "system:serviceaccount:finsecure:jenkins-deployer" cannot list resource "secrets" in API group "" in the namespace "finsecure"
+
+$ kubectl get pods -n finsecure (expected: allowed)
+NAME                             READY   STATUS    RESTARTS   AGE
+finsecure-pay-68f747898d-wpncc   1/1     Running   0          38m
+finsecure-pay-68f747898d-z92pt   1/1     Running   0          45m
